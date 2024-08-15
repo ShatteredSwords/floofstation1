@@ -1,10 +1,9 @@
-using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Atmos.Components
 {
-    [RegisterComponent, Access(typeof(AirtightSystem))]
+    [RegisterComponent]
     public sealed partial class AirtightComponent : Component
     {
         public (EntityUid Grid, Vector2i Tile) LastPosition { get; set; }
@@ -55,8 +54,11 @@ namespace Content.Server.Atmos.Components
         [DataField]
         public bool NoAirWhenFullyAirBlocked { get; set; } = true;
 
+<<<<<<< HEAD
         /// <inheritdoc cref="CurrentAirBlockedDirection"/>
         [Access(Other = AccessPermissions.ReadWriteExecute)]
+=======
+>>>>>>> parent of 462e91c2cc (aaaaaaaaa)
         public AtmosDirection AirBlockedDirection => (AtmosDirection)CurrentAirBlockedDirection;
     }
 }

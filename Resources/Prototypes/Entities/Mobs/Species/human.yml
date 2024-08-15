@@ -17,6 +17,7 @@
     - id: FoodMeatHuman
       amount: 5
   - type: PotentialPsionic #Nyano - Summary: makes potentially psionic.
+<<<<<<< HEAD
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
@@ -24,6 +25,8 @@
     understands:
     - GalacticCommon
     - SolCommon
+=======
+>>>>>>> parent of 462e91c2cc (aaaaaaaaa)
 
 - type: entity
   parent: BaseSpeciesDummy

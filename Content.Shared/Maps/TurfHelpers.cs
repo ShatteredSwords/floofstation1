@@ -15,11 +15,19 @@ namespace Content.Shared.Maps
         /// <summary>
         ///     Attempts to get the turf at map indices with grid id or null if no such turf is found.
         /// </summary>
+<<<<<<< HEAD
         public static TileRef GetTileRef(this Vector2i vector2i, EntityUid gridId, IEntityManager? entityManager = null)
         {
             entityManager ??= IoCManager.Resolve<IEntityManager>();
 
             if (!entityManager.TryGetComponent<MapGridComponent>(gridId, out var grid))
+=======
+        public static TileRef GetTileRef(this Vector2i vector2i, EntityUid gridId, IMapManager? mapManager = null)
+        {
+            mapManager ??= IoCManager.Resolve<IMapManager>();
+
+            if (!mapManager.TryGetGrid(gridId, out var grid))
+>>>>>>> parent of 462e91c2cc (aaaaaaaaa)
                 return default;
 
             if (!grid.TryGetTileRef(vector2i, out var tile))
@@ -68,7 +76,7 @@ namespace Content.Shared.Maps
         /// </summary>
         public static bool IsSpace(this Tile tile, ITileDefinitionManager? tileDefinitionManager = null)
         {
-            return tile.GetContentTileDefinition(tileDefinitionManager).MapAtmosphere;
+            return tile.GetContentTileDefinition(tileDefinitionManager).IsSpace;
         }
 
         /// <summary>
@@ -114,6 +122,15 @@ namespace Content.Shared.Maps
                 return Enumerable.Empty<EntityUid>();
 
             return GetEntitiesInTile(turf.Value, flags, lookupSystem);
+        }
+
+        /// <summary>
+        ///     Helper that returns all entities in a turf.
+        /// </summary>
+        [Obsolete("Use the lookup system")]
+        public static IEnumerable<EntityUid> GetEntitiesInTile(this Vector2i indices, EntityUid gridId, LookupFlags flags = LookupFlags.Static, EntityLookupSystem? lookupSystem = null)
+        {
+            return GetEntitiesInTile(indices.GetTileRef(gridId), flags, lookupSystem);
         }
 
         /// <summary>

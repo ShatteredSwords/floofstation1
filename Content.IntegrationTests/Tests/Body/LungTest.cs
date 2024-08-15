@@ -121,12 +121,21 @@ namespace Content.IntegrationTests.Tests.Body
                     "Did not inhale in any gas"
                 );
 
+<<<<<<< HEAD
                 // Breathe out
                 await PoolManager.WaitUntil(server, () => resp.Status == RespiratorStatus.Inhaling);
                 Assert.That(
                     GetMapMoles(), Is.EqualTo(startingMoles).Within(0.0002),
                     "Did not exhale as much gas as was inhaled"
                 );
+=======
+                    // metabolize + exhale
+                    metaSys.Update(1.0f);
+                    metaSys.Update(1.0f);
+                    respSys.Update(2.0f);
+                    Assert.That(GetMapMoles(), Is.EqualTo(startingMoles).Within(0.0001));
+                });
+>>>>>>> parent of 462e91c2cc (aaaaaaaaa)
             }
 
             await pair.CleanReturnAsync();

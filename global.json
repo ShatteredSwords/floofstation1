@@ -1,6 +1,10 @@
 {
   "sdk": {
     "version": "8.0.100",
+<<<<<<< HEAD
     "rollForward": "patch"
+=======
+    "rollForward": "latestFeature"
+>>>>>>> parent of 462e91c2cc (aaaaaaaaa)
   }
 }

@@ -541,6 +541,7 @@
           Quantity: 20
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWeb
+<<<<<<< HEAD
 
 - type: entity
   parent: ClothingOuterWinterCoat
@@ -651,3 +652,5 @@
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_zeng_hu_pharma.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_zeng_hu_pharma.rsi
+=======
+>>>>>>> parent of 462e91c2cc (aaaaaaaaa)

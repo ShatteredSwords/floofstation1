@@ -14,8 +14,23 @@
     ClothingShoesColorBlack: 4
     ClothingHeadHatGreysoft: 2
     ClothingHeadHatCorpsoft: 2
+<<<<<<< HEAD
     ClothingOuterWinterCoat: 2
     ClothingOuterCorporateJacket: 2
+=======
+    ClothingOuterWinterCoat: 2 # Nyano - Clothing addition
+    ClothingOuterWinterCoatLong: 2 # Nyano - Clothing addition
+    ClothingOuterWinterCoatPlaid: 2 # Nyano - Clothing addition
+    ClothingOuterCoatHyenhSweater: 2 # Nyano - Clothing addition
+    ClothingOuterCoatLettermanBlue: 2 # Nyano - Clothing addition
+    ClothingOuterCoatLettermanRed: 2 # Nyano - Clothing addition
+    ClothingOuterDenimJacket: 2 # DeltaV - Clothing addition
+    ClothingOuterCorporateJacket: 2 # DeltaV - Clothing addition
+    ClothingShoesBootsFishing: 2 # Nyano - Clothing addition
+    ClothingHeadTinfoil: 2 # Nyano - Clothing addition
+    ClothingHeadFishCap: 2
+    ClothingHeadRastaHat: 2
+>>>>>>> parent of 462e91c2cc (aaaaaaaaa)
     ClothingBeltStorageWaistbag: 3
     ClothingEyesGlasses: 6
     ClothingHandsGlovesColorBlack: 4
