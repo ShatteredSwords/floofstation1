@@ -6,7 +6,10 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
+using Content.Shared.Examine;
 using Content.Shared.Popups;
+using static Content.Shared.Examine.ExamineSystemShared;
 
 namespace Content.Server.Psionics.Abilities
 {

@@ -11,6 +11,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Throwing;
 using Robust.Shared.Timing;
+using System.Xml;
 
 namespace Content.Shared.Psionics.Abilities
 {

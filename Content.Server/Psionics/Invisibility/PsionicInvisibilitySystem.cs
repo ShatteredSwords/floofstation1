@@ -1,5 +1,6 @@
 using Content.Shared.Psionics.Abilities;
 using Content.Shared.Psionics;
+using Content.Server.Psionics.Abilities;
 using Content.Shared.Eye;
 using Content.Server.NPC.Systems;
 using Robust.Shared.Containers;

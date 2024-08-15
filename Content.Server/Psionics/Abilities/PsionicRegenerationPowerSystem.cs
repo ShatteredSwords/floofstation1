@@ -1,4 +1,5 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Player;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.DoAfter;
@@ -10,6 +11,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Psionics.Events;
+using Content.Shared.Examine;
+using static Content.Shared.Examine.ExamineSystemShared;
 using Robust.Shared.Timing;
 using Content.Shared.Actions.Events;
 using Robust.Server.Audio;
