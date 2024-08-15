@@ -127,6 +127,9 @@ namespace Content.Server.Psionics
 
         public void RollPsionics(EntityUid uid, PotentialPsionicComponent component, bool applyGlimmer = true, float multiplier = 1f)
         {
+            if (HasComp<PsionicComponent>(uid))
+                return;
+
             if (!_cfg.GetCVar(CCVars.PsionicRollsEnabled))
                 return;
 
