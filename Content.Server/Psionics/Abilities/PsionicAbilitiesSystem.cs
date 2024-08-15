@@ -38,35 +38,35 @@ namespace Content.Server.Psionics.Abilities
             if (Deleted(uid))
                 return;
 
-            AddRandomPsionicPower(uid);
+            var rollCount = 0;
+            while (rollCount < 3)
+            {
+                if (AddRandomPsionicPower(uid))
+                    break;
+
+                rollCount++;
+            }
 
         }
-        public void AddRandomPsionicPower(EntityUid uid)
+        public bool AddRandomPsionicPower(EntityUid uid)
         {
             EnsureComp<PsionicComponent>(uid, out var psionic);
 
             if (!_prototypeManager.TryIndex<WeightedRandomPrototype>("RandomPsionicPowerPool", out var pool))
             {
                 Logger.Error("Can't index the random psionic power pool!");
-                return;
+                return false;
             }
 
-            var newPool = pool;
-            foreach (var component in pool.Weights.Keys)
-            {
-                var checkedComponent = _componentFactory.GetComponent(component);
-                if (EntityManager.HasComponent(uid, checkedComponent.GetType()))
-                    newPool.Weights.Remove(component);
-            }
+            var newComponent = _componentFactory.GetComponent(pool.Pick());
 
-            if (newPool.Weights.Keys != null)
+            if (!EntityManager.HasComponent(uid, newComponent.GetType()))
             {
-                var newComponent = _componentFactory.GetComponent(newPool.Pick());
-
                 EntityManager.AddComponent(uid, newComponent);
                 _glimmerSystem.DeltaGlimmerInput(_random.NextFloat(psionic.Amplification * psionic.Dampening, psionic.Amplification * psionic.Dampening * 5));
+                return true;
             }
-            return;
+            return false;
         }
 
         public void RemovePsionics(EntityUid uid)
