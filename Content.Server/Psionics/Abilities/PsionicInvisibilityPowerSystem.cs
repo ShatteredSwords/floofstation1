@@ -6,6 +6,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Stunnable;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
+using Content.Server.Psionics;
 using Content.Shared.Psionics.Events;
 using Content.Shared.Actions.Events;
 using Robust.Shared.Audio.Systems;

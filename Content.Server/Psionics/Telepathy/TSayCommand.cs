@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
+<<<<<<< HEAD
 <<<<<<< HEAD:Content.Server/Nyanotrasen/Chat/TSayCommand.cs
 <<<<<<< HEAD:Content.Server/Psionics/Telepathy/TSayCommand.cs
 using Content.Shared.Chat;
@@ -8,6 +9,9 @@ using Content.Shared.Chat;
 using Robust.Server.Player;
 =======
 >>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'"):Content.Server/Psionics/Telepathy/TSayCommand.cs
+=======
+using Robust.Server.Player;
+>>>>>>> parent of 0e11da6316 (Final power update)
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
