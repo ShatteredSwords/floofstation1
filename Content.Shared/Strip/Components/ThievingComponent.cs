@@ -11,8 +11,14 @@ public sealed partial class ThievingComponent : Component
     /// <summary>
     /// How much the strip time should be shortened by
     /// </summary>
+<<<<<<< HEAD
     [DataField]
     public TimeSpan StripTimeReduction = TimeSpan.FromSeconds(0.5f);
+=======
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("stripTimeReduction")]
+    public float StripTimeReduction = 0.5f;
+>>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
 
     /// <summary>
     ///  A multiplier coefficient for strip time

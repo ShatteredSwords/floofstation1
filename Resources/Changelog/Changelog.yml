@@ -4251,6 +4251,7 @@ Entries:
       message: 'Height and Width sliders have been added to character creation. '
   id: 6131
   time: '2024-06-27T17:46:51.0000000+00:00'
+<<<<<<< HEAD
 - author: Mnemotechnician
   changes:
     - type: Add
@@ -4934,3 +4935,5 @@ Entries:
       message: Lamiae should now be rendered much better.
   id: 6217
   time: '2024-08-05T17:15:51.0000000+00:00'
+=======
+>>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
