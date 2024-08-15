@@ -118,6 +118,7 @@
   - type: Grammar
     attributes:
       gender: male
+<<<<<<< HEAD
   - type: PotentialPsionic # Nyano
   - type: LanguageKnowledge
     speaks:
@@ -126,6 +127,8 @@
     understands:
     - GalacticCommon
     - Mouse
+=======
+>>>>>>> parent of f96847f90b (Revert "removing some errant instances of potentialpsionic")
 
 - type: entity
   id: MobRatKingBuff
