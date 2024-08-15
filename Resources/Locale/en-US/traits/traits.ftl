@@ -34,6 +34,7 @@ trait-description-Stutter = You t-t-talk with a bit of a s-s-stutter...
 
 trait-name-Snoring = Snoring
 trait-description-Snoring = You will snore while sleeping.
+<<<<<<< HEAD
 
 trait-name-LatentPsychic = Latent Psychic
 trait-description-LatentPsychic = Your mind and soul are open to the noosphere, allowing for a limited use of Telepathy.
@@ -101,3 +102,5 @@ trait-name-SquirtProducer = Pussy
 trait-description-SquirtProducer = You have a slit between your legs.
 =======
 >>>>>>> parent of d0cb65af8f (Partial Glimmer Refactor & Pyromancy Full Refactor)
+=======
+>>>>>>> parent of e6e69c06de (Now featuring trait points)

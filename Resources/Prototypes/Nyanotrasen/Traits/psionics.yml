@@ -1,6 +1,6 @@
 - type: trait
   id: LatentPsychic
-  category: Psionic
-  points: -1
+  name: Latent Psychic
+  description: trait-latent-psychic-desc
   components:
     - type: PotentialPsionic
