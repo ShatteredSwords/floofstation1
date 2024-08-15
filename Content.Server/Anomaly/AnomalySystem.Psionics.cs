@@ -19,6 +19,7 @@ public sealed partial class AnomalySystem
 <<<<<<< HEAD
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     //Nyano - Summary: gives dispellable behavior to Anomalies.
 =======
     //Nyano - Summary: gives dispellable behavior to Anomalies. 
@@ -30,6 +31,9 @@ public sealed partial class AnomalySystem
 <<<<<<< HEAD
     //Nyano - Summary: gives dispellable behavior to Anomalies.
 >>>>>>> parent of e4f387d832 (remove downstream comments)
+=======
+    //Nyano - Summary: gives dispellable behavior to Anomalies. 
+>>>>>>> parent of 303d1b307e (Last set of migrations)
 =======
     //Nyano - Summary: gives dispellable behavior to Anomalies. 
 >>>>>>> parent of 303d1b307e (Last set of migrations)
