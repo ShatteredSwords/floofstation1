@@ -89,7 +89,6 @@ namespace Content.Server.Psionics
             _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.PsionicInvisibility, false);
             _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
             _visibilitySystem.RefreshVisibility(uid, visibility);
-            SetCanSeePsionicInvisiblity(uid, true);
         }
 
 
@@ -100,7 +99,6 @@ namespace Content.Server.Psionics
                 _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.PsionicInvisibility, false);
                 _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
                 _visibilitySystem.RefreshVisibility(uid, visibility);
-                SetCanSeePsionicInvisiblity(uid, false);
             }
         }
 

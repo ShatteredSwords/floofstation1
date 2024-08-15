@@ -1,6 +1,6 @@
 using Content.Shared.Whitelist;
 
-namespace Content.Shared.Psionics
+namespace Content.Server.Psionics
 {
     [RegisterComponent]
     public sealed partial class PsionicInvisibleContactsComponent : Component
