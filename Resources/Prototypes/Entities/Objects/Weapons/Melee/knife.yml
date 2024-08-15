@@ -252,6 +252,10 @@
     sprite: Objects/Weapons/Melee/uranium_shiv.rsi
   - type: Sprite
     sprite: Objects/Weapons/Melee/uranium_shiv.rsi
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
 
 - type: entity
   name: throwing knife
@@ -263,7 +267,10 @@
     tags:
     - CombatKnife
     - Knife
+<<<<<<< HEAD
     - CannonRestrict
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
   - type: Sprite
     sprite: Objects/Weapons/Melee/throwing_knife.rsi
     state: icon
@@ -276,10 +283,18 @@
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
   - type: DamageOtherOnHit
+<<<<<<< HEAD
     ignoreResistances: true
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
     damage:
       types:
         Slash: 10
         Piercing: 15
   - type: Item
     sprite: Objects/Weapons/Melee/throwing_knife.rsi
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
