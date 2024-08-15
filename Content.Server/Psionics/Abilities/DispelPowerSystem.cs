@@ -84,11 +84,7 @@ namespace Content.Server.Psionics.Abilities
             {
                 args.Handled = true;
                 _psionics.LogPowerUsed(args.Performer, "dispel", psionic, 1, 1, true);
-
-                // Redundant check here as well for a small performance optimization
-                // Dispel has its own niche equations for glimmer.
-                if (_glimmerSystem.GetGlimmerEnabled())
-                    _glimmerSystem.DeltaGlimmerOutput(-_random.NextFloat(2 * psionic.Dampening - psionic.Amplification, 4 * psionic.Dampening - psionic.Amplification));
+                _glimmerSystem.DeltaGlimmerInput(-_random.NextFloat(2 * psionic.Dampening - psionic.Amplification, 4 * psionic.Dampening - psionic.Amplification));
             }
         }
 
