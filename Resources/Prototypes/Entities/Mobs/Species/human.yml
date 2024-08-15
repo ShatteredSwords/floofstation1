@@ -17,6 +17,7 @@
     - id: FoodMeatHuman
       amount: 5
 <<<<<<< HEAD
+<<<<<<< HEAD
   - type: PotentialPsionic #Nyano - Summary: makes potentially psionic.
 <<<<<<< HEAD
   - type: LanguageKnowledge
@@ -30,6 +31,9 @@
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
 =======
 >>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
+=======
+  - type: PotentialPsionic #Nyano - Summary: makes potentially psionic.
+>>>>>>> parent of 1566ee557d (Last one missed)
 
 - type: entity
   parent: BaseSpeciesDummy
