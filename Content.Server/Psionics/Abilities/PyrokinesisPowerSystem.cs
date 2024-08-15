@@ -11,7 +11,6 @@ using Robust.Server.Audio;
 using Robust.Shared.Timing;
 using Content.Shared.Popups;
 using Content.Shared.Psionics.Events;
-using Content.Shared.Psionics;
 
 namespace Content.Server.Psionics.Abilities
 {
@@ -39,7 +38,7 @@ namespace Content.Server.Psionics.Abilities
         private void OnInit(EntityUid uid, PyrokinesisPowerComponent component, ComponentInit args)
         {
             _actions.AddAction(uid, ref component.PyrokinesisPrechargeActionEntity, component.PyrokinesisPrechargeActionId);
-            _actions.TryGetActionData(component.PyrokinesisPrechargeActionEntity, out var actionData);
+            _actions.TryGetActionData( component.PyrokinesisPrechargeActionEntity, out var actionData);
             if (actionData is { UseDelay: not null })
                 _actions.StartUseDelay(component.PyrokinesisPrechargeActionEntity);
             if (TryComp<PsionicComponent>(uid, out var psionic))
@@ -108,17 +107,13 @@ namespace Content.Server.Psionics.Abilities
 
                 var ent = Spawn("ProjectileAnomalyFireball", spawnCoords);
 
-                if (_glimmerSystem.GlimmerOutput >= 25 * psionic.Dampening)
-                    EnsureComp<PsionicallyInvisibleComponent>(ent);
-
                 if (TryComp<ExplosiveComponent>(ent, out var fireball))
                 {
-                    var psionicFactor = psionic.Amplification * _glimmerSystem.GetGlimmerEquilibriumRatio();
-                    fireball.MaxIntensity = 2 * psionicFactor;
-                    fireball.IntensitySlope = 1 * psionicFactor;
-                    fireball.TotalIntensity = 25 * psionicFactor;
+                    fireball.MaxIntensity = (int) MathF.Round(2 * psionic.Amplification);
+                    fireball.IntensitySlope = (int) MathF.Round(1 * psionic.Amplification);
+                    fireball.TotalIntensity = (int) MathF.Round(25 * psionic.Amplification);
 
-                    if (_glimmerSystem.GlimmerOutput >= _glimmerSystem.GlimmerEquilibrium)
+                    if (_glimmerSystem.GlimmerOutput >= 500)
                         fireball.CanCreateVacuum = true;
                     else fireball.CanCreateVacuum = false;
 
