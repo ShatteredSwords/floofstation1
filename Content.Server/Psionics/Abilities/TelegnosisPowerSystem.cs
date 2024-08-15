@@ -70,7 +70,9 @@ namespace Content.Server.Psionics.Abilities
             if (EnsureComp<TelegnosticProjectionComponent>(projection, out var projectionComponent))
                 projectionComponent.OriginalEntity = uid;
 
-            _psionics.LogPowerUsed(uid, "telegnosis", psionic, 8, 12);
+            _psionics.LogPowerUsed(uid, "telegnosis",
+            (int) Math.Round(8f * psionic.Amplification - psionic.Dampening),
+            (int) Math.Round(12f * psionic.Amplification - psionic.Dampening));
 
             args.Handled = true;
         }
