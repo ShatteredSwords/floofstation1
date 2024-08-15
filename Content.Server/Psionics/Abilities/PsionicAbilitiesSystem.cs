@@ -30,7 +30,7 @@ namespace Content.Server.Psionics.Abilities
 
         /// <summary>
         /// Adds a psychic power once a character rolls one. This used to be a system you have to select for. However the opt-in is no longer the text window, but is now done at character creation.
-        /// TODO: This is going to get removed when I reach Part 3 of my reworks, when I touch upon the GlimmerSystem itself and overhaul how players get powers.
+        /// This is going to get removed when I reach Part 3 of my reworks, when I touch upon the GlimmerSystem itself and overhaul how players get powers.
         /// </summary>
         /// <param name="uid"></param>
         /// <param name="component"></param>
