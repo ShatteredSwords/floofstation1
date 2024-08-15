@@ -18,6 +18,7 @@ public sealed partial class ThievingComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("stripTimeReduction")]
 <<<<<<< HEAD
+<<<<<<< HEAD
     public float StripTimeReduction = 0.5f;
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
 
@@ -29,6 +30,9 @@ public sealed partial class ThievingComponent : Component
 =======
     public TimeSpan StripTimeReduction = TimeSpan.FromSeconds(0.5f);
 >>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+    public float StripTimeReduction = 0.5f;
+>>>>>>> parent of 89a6bb3ab5 (Mirror: StrippableSystem doafter overhaul (#205))
 
     /// <summary>
     /// Should it notify the user if they're stripping a pocket?
