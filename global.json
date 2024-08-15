@@ -2,9 +2,13 @@
   "sdk": {
     "version": "8.0.100",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "rollForward": "patch"
 =======
     "rollForward": "latestFeature"
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+    "rollForward": "disable"
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
   }
 }

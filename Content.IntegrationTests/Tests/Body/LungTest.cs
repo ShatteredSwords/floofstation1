@@ -133,7 +133,7 @@ namespace Content.IntegrationTests.Tests.Body
                     metaSys.Update(1.0f);
                     metaSys.Update(1.0f);
                     respSys.Update(2.0f);
-                    Assert.That(GetMapMoles(), Is.EqualTo(startingMoles).Within(0.0001));
+                    Assert.That(GetMapMoles(), Is.EqualTo(startingMoles).Within(0.0002));
                 });
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
             }

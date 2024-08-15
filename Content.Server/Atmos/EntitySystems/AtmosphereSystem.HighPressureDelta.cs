@@ -1,17 +1,19 @@
 using Content.Server.Atmos.Components;
 using Content.Shared.Atmos;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Content.Shared.Humanoid;
 =======
 using Content.Shared.Audio;
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -57,7 +59,7 @@ namespace Content.Server.Atmos.EntitySystems
 
                 if (TryComp<PhysicsComponent>(uid, out var body))
                 {
-                    _physics.SetBodyStatus(body, BodyStatus.OnGround);
+                    _physics.SetBodyStatus(uid, body, BodyStatus.OnGround);
                 }
 
                 if (TryComp<FixturesComponent>(uid, out var fixtures))
@@ -82,7 +84,7 @@ namespace Content.Server.Atmos.EntitySystems
             if (!TryComp<FixturesComponent>(uid, out var fixtures))
                 return;
 
-            _physics.SetBodyStatus(body, BodyStatus.InAir);
+            _physics.SetBodyStatus(uid, body, BodyStatus.InAir);
 
             foreach (var (id, fixture) in fixtures.Fixtures)
             {
@@ -104,9 +106,9 @@ namespace Content.Server.Atmos.EntitySystems
             // TODO ATMOS finish this
 
             // Don't play the space wind sound on tiles that are on fire...
-            if(tile.PressureDifference > 15 && !tile.Hotspot.Valid)
+            if (tile.PressureDifference > 15 && !tile.Hotspot.Valid)
             {
-                if(_spaceWindSoundCooldown == 0 && !string.IsNullOrEmpty(SpaceWindSound))
+                if (_spaceWindSoundCooldown == 0 && !string.IsNullOrEmpty(SpaceWindSound))
                 {
                     var coordinates = _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
                     _audio.PlayPvs(SpaceWindSound, coordinates, AudioParams.Default.WithVariation(0.125f).WithVolume(MathHelper.Clamp(tile.PressureDifference / 10, 10, 100)));

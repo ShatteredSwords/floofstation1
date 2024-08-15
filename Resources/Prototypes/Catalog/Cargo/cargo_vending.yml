@@ -34,6 +34,7 @@
     state: base
   product: CrateVendingMachineRestockClothesFilled
 <<<<<<< HEAD
+<<<<<<< HEAD
   cost: 1500
   category: cargoproduct-category-name-service
   group: market
@@ -48,6 +49,9 @@
 =======
   cost: 7245
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+  cost: 8050
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
   category: cargoproduct-category-name-service
   group: market
 

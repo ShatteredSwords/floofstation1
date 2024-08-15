@@ -4081,6 +4081,9 @@ Entries:
   id: 6110
   time: '2024-05-13T04:58:39.0000000+00:00'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
 - author: LovelyLophi
   changes:
     - type: Add
@@ -4095,6 +4098,7 @@ Entries:
         appear on low-pop servers.
   id: 6112
   time: '2024-05-28T23:44:39.0000000+00:00'
+<<<<<<< HEAD
 - author: FoxxoTrystan
   changes:
     - type: Tweak
@@ -4950,3 +4954,5 @@ Entries:
 >>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
 =======
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")

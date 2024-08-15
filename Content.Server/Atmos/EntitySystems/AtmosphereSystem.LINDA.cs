@@ -2,15 +2,20 @@ using Content.Server.Atmos.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 =======
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+using Robust.Shared.Utility;
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
 
 namespace Content.Server.Atmos.EntitySystems
 {
     public sealed partial class AtmosphereSystem
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
         private void ProcessCell(
             Entity<GridAtmosphereComponent, GasTileOverlayComponent, MapGridComponent, TransformComponent> ent,
@@ -18,6 +23,9 @@ namespace Content.Server.Atmos.EntitySystems
 =======
         private void ProcessCell(GridAtmosphereComponent gridAtmosphere, TileAtmosphere tile, int fireCount, GasTileOverlayComponent? visuals)
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+        private void ProcessCell(GridAtmosphereComponent gridAtmosphere, TileAtmosphere tile, int fireCount, GasTileOverlayComponent visuals)
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
         {
             var gridAtmosphere = ent.Comp1;
             // Can't process a tile without air
@@ -124,15 +132,9 @@ namespace Content.Server.Atmos.EntitySystems
         private void Archive(TileAtmosphere tile, int fireCount)
         {
             if (tile.Air != null)
-            {
                 tile.Air.Moles.AsSpan().CopyTo(tile.MolesArchived.AsSpan());
-                tile.TemperatureArchived = tile.Air.Temperature;
-            }
-            else
-            {
-                tile.TemperatureArchived = tile.Temperature;
-            }
 
+            tile.TemperatureArchived = tile.Temperature;
             tile.ArchivedCycle = fireCount;
         }
 
@@ -174,6 +176,12 @@ namespace Content.Server.Atmos.EntitySystems
         /// <param name="disposeExcitedGroup">Whether to dispose of the tile's <see cref="ExcitedGroup"/></param>
         private void RemoveActiveTile(GridAtmosphereComponent gridAtmosphere, TileAtmosphere tile, bool disposeExcitedGroup = true)
         {
+            DebugTools.Assert(tile.Excited == gridAtmosphere.ActiveTiles.Contains(tile));
+            DebugTools.Assert(tile.Excited || tile.ExcitedGroup == null);
+
+            if (!tile.Excited)
+                return;
+
             tile.Excited = false;
             gridAtmosphere.ActiveTiles.Remove(tile);
 
@@ -194,7 +202,6 @@ namespace Content.Server.Atmos.EntitySystems
             if (tile.Air == null)
                 return tile.HeatCapacity;
 
-            // Moles archived is not null if air is not null.
             return GetHeatCapacityCalculation(tile.MolesArchived!, tile.Space);
         }
 

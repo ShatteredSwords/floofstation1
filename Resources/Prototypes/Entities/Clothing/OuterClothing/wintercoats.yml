@@ -542,6 +542,9 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWeb
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
 
 - type: entity
   parent: ClothingOuterWinterCoat
@@ -550,6 +553,7 @@
   description: A cozy jacket with the Cybersun logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
   components:
   - type: Sprite
+<<<<<<< HEAD
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_cybersun.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_cybersun.rsi
@@ -557,10 +561,20 @@
 - type: entity
   parent: ClothingOuterWinterCoat
   id: ClothingOuterEeCorporateJacket
+=======
+    sprite: Clothing/OuterClothing/WinterCoats/cs_corpo_jacket.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/cs_corpo_jacket.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterEECorporateJacket
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
   name: Einstein Engines Corporate Jacket
   description: A cozy jacket with the Einstein Engines logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
   components:
   - type: Sprite
+<<<<<<< HEAD
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_einstein_engines.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_einstein_engines.rsi
@@ -568,10 +582,20 @@
 - type: entity
   parent: ClothingOuterWinterCoat
   id: ClothingOuterHiCorporateJacket
+=======
+    sprite: Clothing/OuterClothing/WinterCoats/ee_corpo_jacket.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/ee_corpo_jacket.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterHICorporateJacket
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
   name: Hephaestus Industries Corporate Jacket
   description: A cozy jacket with the Hephaestus Industries logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
   components:
   - type: Sprite
+<<<<<<< HEAD
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_hephestus_industries.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_hephestus_industries.rsi
@@ -579,13 +603,28 @@
 - type: entity
   parent: ClothingOuterWinterCoat
   id: ClothingOuterHmCorporateJacket
+=======
+    sprite: Clothing/OuterClothing/WinterCoats/hi_corpo_jacket.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/hi_corpo_jacket.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterHMCorporateJacket
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
   name: Hawkmoon Acquisitions Corporate Jacket
   description: A cozy jacket with the Hawkmoon Acquisitions logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
   components:
   - type: Sprite
+<<<<<<< HEAD
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_hawkmoon_aquisitions.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_hawkmoon_aquisitions.rsi
+=======
+    sprite: Clothing/OuterClothing/WinterCoats/hm_corpo_jacket.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/hm_corpo_jacket.rsi
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
 
 - type: entity
   parent: ClothingOuterWinterCoat
@@ -594,6 +633,7 @@
   description: A cozy jacket with the Interdyne logo printed on the back. Merchandise rewarded to stations with a safety factor of uhh... seven.
   components:
   - type: Sprite
+<<<<<<< HEAD
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_interdyne.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_interdyne.rsi
@@ -654,3 +694,8 @@
     sprite: Clothing/OuterClothing/WinterCoats/corpo_jacket_zeng_hu_pharma.rsi
 =======
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+    sprite: Clothing/OuterClothing/WinterCoats/id_corpo_jacket.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/id_corpo_jacket.rsi
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")

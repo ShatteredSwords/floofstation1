@@ -97,20 +97,18 @@ namespace Content.Server.Atmos.EntitySystems
             }
         }
 
-        private AtmosDebugOverlayData ConvertTileToData(TileAtmosphere? tile)
+        private AtmosDebugOverlayData? ConvertTileToData(TileAtmosphere tile)
         {
-            if (tile == null)
-                return default;
-
             return new AtmosDebugOverlayData(
                 tile.GridIndices,
                 tile.Air?.Temperature ?? default,
                 tile.Air?.Moles,
                 tile.PressureDirection,
                 tile.LastPressureDirection,
-                tile.BlockedAirflow,
+                tile.AirtightData.BlockedDirections,
                 tile.ExcitedGroup?.GetHashCode(),
                 tile.Space,
+<<<<<<< HEAD
 <<<<<<< HEAD
                 tile.MapAtmosphere,
                 tile.NoGridTile,
@@ -119,6 +117,10 @@ namespace Content.Server.Atmos.EntitySystems
                 false,
                 false);
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+                tile.MapAtmosphere,
+                tile.NoGridTile);
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
         }
 
         public override void Update(float frameTime)

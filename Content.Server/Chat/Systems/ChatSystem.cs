@@ -9,9 +9,13 @@ using Content.Server.Language;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Content.Server.Psionics.Telepathy;
 =======
 using Content.Server.Nyanotrasen.Chat;
+=======
+using Content.Server.Psionics.Telepathy;
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)

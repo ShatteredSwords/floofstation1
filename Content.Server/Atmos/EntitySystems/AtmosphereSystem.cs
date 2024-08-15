@@ -4,6 +4,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Shared.Atmos.EntitySystems;
+using Content.Shared.Doors.Components;
 using Content.Shared.Maps;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
@@ -43,12 +44,18 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     private float _exposedTimer = 0f;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private EntityQuery<GridAtmosphereComponent> _atmosQuery;
     private EntityQuery<MapAtmosphereComponent> _mapAtmosQuery;
     private EntityQuery<AirtightComponent> _airtightQuery;
     private EntityQuery<FirelockComponent> _firelockQuery;
 =======
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+    private EntityQuery<GridAtmosphereComponent> _atmosQuery;
+    private EntityQuery<AirtightComponent> _airtightQuery;
+    private EntityQuery<FirelockComponent> _firelockQuery;
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
     private HashSet<EntityUid> _entSet = new();
 
     public override void Initialize()
@@ -65,12 +72,18 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         InitializeMap();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         _mapAtmosQuery = GetEntityQuery<MapAtmosphereComponent>();
         _atmosQuery = GetEntityQuery<GridAtmosphereComponent>();
         _airtightQuery = GetEntityQuery<AirtightComponent>();
         _firelockQuery = GetEntityQuery<FirelockComponent>();
 =======
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
+=======
+        _atmosQuery = GetEntityQuery<GridAtmosphereComponent>();
+        _airtightQuery = GetEntityQuery<AirtightComponent>();
+        _firelockQuery = GetEntityQuery<FirelockComponent>();
+>>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
 
         SubscribeLocalEvent<TileChangedEvent>(OnTileChanged);
 
