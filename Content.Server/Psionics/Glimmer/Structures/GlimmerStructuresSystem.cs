@@ -76,7 +76,7 @@ namespace Content.Server.Psionics.Glimmer
 
                 if (source.Accumulator > source.SecondsPerGlimmer)
                 {
-                    var glimmerEquilibrium = GlimmerSystem.GlimmerEquilibrium;
+                    var glimmerEquilibrium = _glimmerSystem.GlimmerEquilibrium;
                     source.Accumulator -= source.SecondsPerGlimmer;
 
                     // Shorthand explanation:
