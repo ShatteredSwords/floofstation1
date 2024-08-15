@@ -1,4 +1,4 @@
-using Content.Server.Psionics.Abilities;
+using Content.Server.Psionics.Abilities; //EE - Summary: the psionics bin where dispel is located.
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Robust.Shared.Random;
@@ -16,6 +16,7 @@ public sealed partial class AnomalySystem
         SubscribeLocalEvent<AnomalyComponent, DispelledEvent>(OnDispelled);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
     //Nyano - Summary: gives dispellable behavior to Anomalies.
@@ -24,6 +25,10 @@ public sealed partial class AnomalySystem
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
 =======
 >>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
+=======
+
+    //Nyano - Summary: gives dispellable behavior to Anomalies.
+>>>>>>> parent of e4f387d832 (remove downstream comments)
     private void OnDispelled(EntityUid uid, AnomalyComponent component, DispelledEvent args)
     {
         _dispel.DealDispelDamage(uid);
