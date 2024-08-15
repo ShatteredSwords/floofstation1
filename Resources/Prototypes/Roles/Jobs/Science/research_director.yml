@@ -3,7 +3,7 @@
   name: job-name-rd
   description: job-description-rd
   playTimeTracker: JobResearchDirector
-  antagAdvantage: 6
+  antagAdvantage: 6 # DeltaV - Reduced TC: Head of Staff
   requirements:
 <<<<<<< HEAD
     - !type:CharacterDepartmentTimeRequirement
@@ -11,15 +11,19 @@
       min: 14400 # Floofstation - 4 hour
 =======
     - !type:DepartmentTimeRequirement
-      department: Epistemics
-      time: 54000
+      department: Epistemics # DeltaV - Epistemics Department replacing Science
+      time: 54000 # DeltaV - 15 hours
     - !type:OverallPlaytimeRequirement
+<<<<<<< HEAD
 <<<<<<< HEAD
       time: 72000 # DeltaV - 20 hours
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
 =======
       time: 72000
 >>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
+=======
+      time: 72000 # DeltaV - 20 hours
+>>>>>>> parent of f5bf4d5bab (Giving pyrokinesis back to ifrit, and setting up base caster stat bonuses to roundstart casters)
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
@@ -31,20 +35,20 @@
   - Command
   - Maintenance
   - ResearchDirector
-  - Mantis
-  - Chapel
+  - Mantis # DeltaV - Psionic Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
+  - Chapel # DeltaV - Chaplain is in Epistemics
   - Cryogenics
-  special:
+  special: # Nyanotrasen - Mystagogue can use the Bible
   - !type:AddComponentSpecial
     components:
-    - type: BibleUser
-    - type: PotentialPsionic
-    - type: Psionic
-      dampening: 1 #Mystagogue gets a significant buff to his antimage abilities, making him better at dispelling than other people
-    - type: DispelPower
-    - type: CommandStaff
+    - type: BibleUser # Nyano - Lets them heal with bibles
+    - type: Psionic # Nyano - They start with telepathic chat
+    - type: DispelPower # Nyano - They get the Dispel psionic power on spawn
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: ResearchDirectorGear
@@ -54,7 +58,7 @@
     shoes: ClothingShoesColorBrown
     id: RnDPDA
     ears: ClothingHeadsetRD
-    belt: BibleMystagogue
+    belt: BibleMystagogue # Nyanotrasen - Mystagogue book for their Ifrit
   innerClothingSkirt: ClothingUniformJumpskirtResearchDirector
   satchel: ClothingBackpackSatchelResearchDirectorFilled
   duffelbag: ClothingBackpackDuffelResearchDirectorFilled

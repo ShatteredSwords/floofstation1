@@ -8,6 +8,7 @@
       min: 3600 # 1hr floof
     - !type:DepartmentTimeRequirement
 <<<<<<< HEAD
+<<<<<<< HEAD
       department: Epistemics # DeltaV - Epistemics Department replacing Science
 <<<<<<< HEAD
       min: 3600 # 1 hr floof
@@ -15,24 +16,25 @@
 =======
       department: Epistemics
 >>>>>>> parent of d439c5a962 (Revert "Merge branch 'VMSolidus-Psionic-Power-Refactor'")
+=======
+      department: Epistemics # DeltaV - Epistemics Department replacing Science
+>>>>>>> parent of f5bf4d5bab (Giving pyrokinesis back to ifrit, and setting up base caster stat bonuses to roundstart casters)
       time: 3600
 >>>>>>> parent of 462e91c2cc (aaaaaaaaa)
   startingGear: ForensicMantisGear
   icon: "JobIconForensicMantis"
   supervisors: job-supervisors-rd
-  antagAdvantage: 5
-  canBeAntag: true
+  antagAdvantage: 5 # DeltaV - From 4 to 5
+  canBeAntag: true # DeltaV - Mantis is no longer a Detective
+  # whitelistRequired: true
   access:
   - Research
   - Maintenance
-  - Mantis
+  - Mantis # DeltaV - Psionic Mantis, see Resources/Prototypes/DeltaV/Access/epistemics.yml
   special:
   - !type:AddComponentSpecial
     components:
-    - type: PotentialPsionic
     - type: Psionic
-      amplification: 0.3
-      dampening: 0.3
     - type: MetapsionicPower
 
 - type: startingGear
@@ -44,10 +46,11 @@
     head: ClothingHeadHatFezMantis
     id: ForensicMantisPDA
     eyes: ClothingEyesGlassesSunglasses
-    ears: ClothingHeadsetScience
+    ears: ClothingHeadsetScience # DeltaV - Mantis is part of Epistemics
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterCoatMantis
     belt: ClothingBeltMantis
+    # pocket2: ForensicScanner # DeltaV - Mantis is no longer a Detective
   innerClothingSkirt: ClothingUniformSkirtMantis
   satchel: ClothingBackpackSatchelMantisFilled
   duffelbag: ClothingBackpackDuffelMantisFilled
