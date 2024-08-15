@@ -1,7 +1,7 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Psionics.Abilities
+namespace Content.Server.Abilities.Psionics
 {
     [RegisterComponent]
     public sealed partial class MindSwappedComponent : Component

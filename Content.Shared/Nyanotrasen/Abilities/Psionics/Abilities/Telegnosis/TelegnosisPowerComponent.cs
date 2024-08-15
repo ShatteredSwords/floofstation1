@@ -22,8 +22,5 @@ namespace Content.Shared.Abilities.Psionics
 
         [DataField("telegnosisFeedback")]
         public string TelegnosisFeedback = "telegnosis-feedback";
-        public EntityUid OriginalEntity = default!;
-        public EntityUid ProjectionUid = default!;
-        public bool IsProjecting = false;
     }
 }

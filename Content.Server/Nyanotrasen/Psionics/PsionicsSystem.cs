@@ -4,14 +4,13 @@ using Content.Shared.Psionics.Glimmer;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Damage.Events;
 using Content.Shared.CCVar;
-using Content.Server.Psionics.Abilities;
+using Content.Server.Abilities.Psionics;
 using Content.Server.Electrocution;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
-using Content.Shared.Psionics;
 
 namespace Content.Server.Psionics
 {
@@ -50,9 +49,6 @@ namespace Content.Server.Psionics
 
             SubscribeLocalEvent<PsionicComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<PsionicComponent, ComponentRemove>(OnRemove);
-
-            SubscribeLocalEvent<InnatePsicasterComponent, ComponentInit>(OnInnatePsiInit);
-            SubscribeLocalEvent<InnatePsicasterComponent, ComponentShutdown>(OnInnatePsiShutdown);
         }
 
         private void OnStartup(EntityUid uid, PotentialPsionicComponent component, MapInitEvent args)
@@ -88,16 +84,6 @@ namespace Content.Server.Psionics
 
         private void OnInit(EntityUid uid, PsionicComponent component, ComponentInit args)
         {
-            component.Amplification = _random.NextFloat(0.3f, 1.2f);
-            component.Dampening = _random.NextFloat(0.3f, 1.2f);
-
-            if (TryComp<InnatePsicasterComponent>(uid, out var innatePsicaster))
-            {
-                component.Amplification += innatePsicaster.Amplification;
-                component.Dampening += innatePsicaster.Dampening;
-                component.InnatePsiChecked = true;
-            }
-
             if (!component.Removable)
                 return;
 
@@ -112,7 +98,7 @@ namespace Content.Server.Psionics
 
         private void OnRemove(EntityUid uid, PsionicComponent component, ComponentRemove args)
         {
-            if (!HasComp<NpcFactionMemberComponent>(uid))
+            if (!TryComp<NpcFactionMemberComponent>(uid, out var factions))
                 return;
 
             _npcFactonSystem.RemoveFaction(uid, "PsionicInterloper");
@@ -152,7 +138,7 @@ namespace Content.Server.Psionics
             }
 
             if (applyGlimmer)
-                chance += (float) _glimmerSystem.Glimmer / 1000;
+                chance += ((float) _glimmerSystem.Glimmer / 1000);
 
             chance *= multiplier;
 
@@ -172,25 +158,6 @@ namespace Content.Server.Psionics
 
             RollPsionics(uid, psionic, multiplier: bonusMuliplier);
             psionic.Rerolled = true;
-        }
-
-        private void OnInnatePsiInit(EntityUid uid, InnatePsicasterComponent component, ComponentInit args)
-        {
-            if (EnsureComp<PsionicComponent>(uid, out var psionic) && !psionic.InnatePsiChecked)
-            {
-                psionic.Amplification += component.Amplification;
-                psionic.Dampening += component.Dampening;
-                psionic.InnatePsiChecked = true;
-            }
-        }
-
-        private void OnInnatePsiShutdown(EntityUid uid, InnatePsicasterComponent component, ComponentShutdown args)
-        {
-            if (TryComp<PsionicComponent>(uid, out var psionic))
-            {
-                psionic.Amplification -= component.Amplification;
-                psionic.Dampening -= component.Amplification;
-            }
         }
     }
 }

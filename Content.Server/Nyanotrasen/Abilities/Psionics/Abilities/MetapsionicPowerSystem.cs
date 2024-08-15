@@ -13,7 +13,7 @@ using Content.Server.DoAfter;
 using Content.Shared.Psionics.Events;
 using Content.Server.Psionics;
 
-namespace Content.Server.Psionics.Abilities
+namespace Content.Server.Abilities.Psionics
 {
     public sealed class MetapsionicPowerSystem : EntitySystem
     {
@@ -82,9 +82,6 @@ namespace Content.Server.Psionics.Abilities
 
         private void OnWidePowerUsed(EntityUid uid, MetapsionicPowerComponent component, WideMetapsionicPowerActionEvent args)
         {
-            if (HasComp<PsionicInsulationComponent>(uid))
-                return;
-
             if (!TryComp<PsionicComponent>(uid, out var psionic))
                 return;
 
@@ -99,9 +96,7 @@ namespace Content.Server.Psionics.Abilities
                 }
             }
             _popups.PopupEntity(Loc.GetString("metapsionic-pulse-failure"), uid, uid, PopupType.Large);
-            _psionics.LogPowerUsed(uid, "metapsionic pulse",
-                (int) MathF.Round(2 * psionic.Amplification - psionic.Dampening),
-                (int) MathF.Round(4 * psionic.Amplification - psionic.Dampening));
+            _psionics.LogPowerUsed(uid, "metapsionic pulse", (int) MathF.Round(psionic.Amplification / psionic.Dampening * 2), (int) MathF.Round(psionic.Amplification / psionic.Dampening * 4));
             UpdateActions(uid, component);
             args.Handled = true;
         }
@@ -137,9 +132,7 @@ namespace Content.Server.Psionics.Abilities
                 PopupType.Medium);
 
             _audioSystem.PlayPvs(component.SoundUse, args.Performer, AudioParams.Default.WithVolume(8f).WithMaxDistance(1.5f).WithRolloffFactor(3.5f));
-            _psionics.LogPowerUsed(args.Performer, "focused metapsionic pulse",
-                (int) MathF.Round(3 * psionic.Amplification - psionic.Dampening),
-                (int) MathF.Round(6 * psionic.Amplification - psionic.Dampening));
+            _psionics.LogPowerUsed(args.Performer, "focused metapsionic pulse", (int) MathF.Round(psionic.Amplification / psionic.Dampening * 3), (int) MathF.Round(psionic.Amplification / psionic.Dampening * 6));
             args.Handled = true;
 
             UpdateActions(args.Performer, component);

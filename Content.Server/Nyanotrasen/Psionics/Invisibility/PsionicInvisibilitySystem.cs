@@ -1,5 +1,4 @@
 using Content.Shared.Abilities.Psionics;
-using Content.Shared.Psionics;
 using Content.Server.Abilities.Psionics;
 using Content.Shared.Eye;
 using Content.Server.NPC.Systems;
@@ -45,8 +44,6 @@ namespace Content.Server.Psionics
         /// <param name="args"></param>
         private void OnInsulInit(EntityUid uid, PsionicInsulationComponent component, ComponentInit args)
         {
-            RaiseLocalEvent(uid, new PsionicInsulationEvent());
-
             if (HasComp<PsionicInvisibilityUsedComponent>(uid))
                 _invisSystem.ToggleInvisibility(uid);
 

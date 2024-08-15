@@ -20,11 +20,9 @@ namespace Content.Shared.Abilities.Psionics
         public List<string> PsychicFeedback= new();
 
         [DataField("amplification")]
-        public float Amplification = default!;
+        public float Amplification = 1f;
 
         [DataField("dampening")]
-        public float Dampening = default!;
-        public bool Telepath = false;
-        public bool InnatePsiChecked = false;
+        public float Dampening = 1f;
     }
 }
