@@ -19,8 +19,5 @@ namespace Content.Shared.Abilities.Psionics
 
         [DataField("telegnosisActionEntity")]
         public EntityUid? TelegnosisActionEntity;
-
-        [DataField("telegnosisFeedback")]
-        public string TelegnosisFeedback = "telegnosis-feedback";
     }
 }

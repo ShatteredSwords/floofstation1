@@ -13,8 +13,5 @@ namespace Content.Shared.Abilities.Psionics
 
         [DataField("noosphericZapActionEntity")]
         public EntityUid? NoosphericZapActionEntity;
-
-        [DataField("noosphericZapFeedback")]
-        public string NoosphericZapFeedback = "noospheric-zap-feedback";
     }
 }

@@ -26,12 +26,6 @@ namespace Content.Shared.Abilities.Psionics
 
         [DataField("psionicRegenerationActionEntity")]
         public EntityUid? PsionicRegenerationActionEntity;
-
-        [DataField("regenerationFeedback")]
-        public string RegenerationFeedback = "regeneration-feedback";
-
-        [DataField("selfRevive")]
-        public bool SelfRevive { get; set; } = false;
     }
 }
 

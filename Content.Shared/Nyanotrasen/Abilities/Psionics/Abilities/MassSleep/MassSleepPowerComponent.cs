@@ -14,8 +14,5 @@ namespace Content.Shared.Abilities.Psionics
 
         [DataField("massSleepActionEntity")]
         public EntityUid? MassSleepActionEntity;
-
-        [DataField("massSleepFeedback")]
-        public string MassSleepFeedback = "mass-sleep-feedback";
     }
 }

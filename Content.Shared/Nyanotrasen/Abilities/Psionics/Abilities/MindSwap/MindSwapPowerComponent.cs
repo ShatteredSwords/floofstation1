@@ -12,8 +12,5 @@ namespace Content.Shared.Abilities.Psionics
 
         [DataField("mindSwapActionEntity")]
         public EntityUid? MindSwapActionEntity;
-
-        [DataField("mindSwapFeedback")]
-        public string MindSwapFeedback = "mind-swap-feedback";
     }
 }
