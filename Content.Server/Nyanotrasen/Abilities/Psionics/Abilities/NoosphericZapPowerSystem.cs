@@ -1,8 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Abilities.Psionics;
-using Content.Shared.Damage;
+using Content.Server.Psionics;
 using Content.Shared.StatusEffect;
-using Content.Server.Electrocution;
 using Content.Server.Stunnable;
 using Content.Server.Beam;
 using Content.Shared.Actions.Events;
@@ -16,8 +15,6 @@ namespace Content.Server.Abilities.Psionics
         [Dependency] private readonly StunSystem _stunSystem = default!;
         [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
         [Dependency] private readonly BeamSystem _beam = default!;
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
 
 
         public override void Initialize()
@@ -38,7 +35,6 @@ namespace Content.Server.Abilities.Psionics
             {
                 psionic.ActivePowers.Add(component);
                 psionic.PsychicFeedback.Add(component.NoosphericZapFeedback);
-                psionic.Amplification += 1f;
             }
         }
 
@@ -49,26 +45,24 @@ namespace Content.Server.Abilities.Psionics
             {
                 psionic.ActivePowers.Remove(component);
                 psionic.PsychicFeedback.Remove(component.NoosphericZapFeedback);
-                psionic.Amplification += 1f;
             }
         }
 
         private void OnPowerUsed(NoosphericZapPowerActionEvent args)
         {
-            if (!TryComp<PsionicComponent>(args.Performer, out var psionic))
+            if (!HasComp<PotentialPsionicComponent>(args.Target))
                 return;
 
-            if (!HasComp<PsionicInsulationComponent>(args.Target) && !HasComp<PsionicInsulationComponent>(args.Performer))
-            {
-                _beam.TryCreateBeam(args.Performer, args.Target, "LightningNoospheric");
-                _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(1 * psionic.Amplification), false);
+            if (HasComp<PsionicInsulationComponent>(args.Target))
+                return;
 
-                _electrocution.TryDoElectrocution(args.Target, null, (int) MathF.Round(5f * psionic.Amplification), new TimeSpan((long) MathF.Round(1f * psionic.Amplification)), true, ignoreInsulation: true);
-                _statusEffectsSystem.TryAddStatusEffect(args.Target, "Stutter", TimeSpan.FromSeconds(2 * psionic.Amplification), false, "StutteringAccent");
+            _beam.TryCreateBeam(args.Performer, args.Target, "LightningNoospheric");
 
-                _psionics.LogPowerUsed(args.Performer, "noopsheric zap", (int) MathF.Round(psionic.Dampening * -4), (int) MathF.Round(psionic.Dampening * -6));
-                args.Handled = true;
-            }
+            _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(5), false);
+            _statusEffectsSystem.TryAddStatusEffect(args.Target, "Stutter", TimeSpan.FromSeconds(10), false, "StutteringAccent");
+
+            _psionics.LogPowerUsed(args.Performer, "noospheric zap");
+            args.Handled = true;
         }
     }
 }
