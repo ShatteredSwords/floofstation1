@@ -1,6 +1,5 @@
 using Content.Shared.Actions;
 using Content.Shared.Psionics.Abilities;
-using Content.Shared.Psionics.Glimmer;
 using Content.Server.Atmos.Components;
 using Content.Server.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
@@ -16,7 +15,7 @@ namespace Content.Server.Psionics.Abilities
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
         [Dependency] private readonly GunSystem _gunSystem = default!;
-        [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
+        [Dependency] private readonly IMapManager _mapManager = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -52,26 +51,29 @@ namespace Content.Server.Psionics.Abilities
 
         private void OnPowerUsed(PyrokinesisPowerActionEvent args)
         {
-            if (!HasComp<PsionicInsulationComponent>(args.Performer)
-                && TryComp<PsionicComponent>(args.Performer, out var psionic))
+            if (!TryComp<PsionicComponent>(args.Performer, out var psionic))
+                return;
+
+            if (!HasComp<PsionicInsulationComponent>(args.Performer))
             {
-                var spawnCoords = Transform(args.Performer).Coordinates;
+                var xformQuery = GetEntityQuery<TransformComponent>();
+                var xform = xformQuery.GetComponent(args.Performer);
+
+                var mapPos = xform.Coordinates.ToMap(EntityManager, _xform);
+                var spawnCoords = _mapManager.TryFindGridAt(mapPos, out var gridUid, out _)
+                    ? xform.Coordinates.WithEntityId(gridUid, EntityManager)
+                    : new(_mapManager.GetMapEntityId(mapPos.MapId), mapPos.Position);
 
                 var ent = Spawn("ProjectileAnomalyFireball", spawnCoords);
 
                 if (TryComp<ExplosiveComponent>(ent, out var fireball))
                 {
-                    fireball.MaxIntensity = (int) MathF.Round(5 * psionic.Amplification);
-                    fireball.IntensitySlope = (int) MathF.Round(1 * psionic.Amplification);
-                    fireball.TotalIntensity = (int) MathF.Round(10 * psionic.Amplification);
+                    fireball.MaxIntensity = (int) MathF.Round(20 * psionic.Amplification - 10 * psionic.Dampening);
 
-                    if (_glimmerSystem.Glimmer >= 500)
-                        fireball.CanCreateVacuum = true;
-                    else fireball.CanCreateVacuum = false;
-
-                    if (psionic.Amplification > 5)
-                        if (EnsureComp<IgniteOnCollideComponent>(ent, out var ignite))
-                            ignite.FireStacks = 0.2f * psionic.Amplification;
+                    if (psionic.Amplification > 5 && EnsureComp<IgniteOnCollideComponent>(ent, out var ignite))
+                    {
+                        ignite.FireStacks = 0.2f * psionic.Amplification - 0.1f * psionic.Dampening;
+                    }
                 }
 
                 var direction = args.Target.ToMapPos(EntityManager, _xform) - spawnCoords.ToMapPos(EntityManager, _xform);

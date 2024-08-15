@@ -2,7 +2,6 @@ using Content.Server.Anomaly.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Anomaly.Components;
-using Content.Shared.Mobs;
 using Content.Shared.Psionics.Glimmer;
 
 namespace Content.Server.Psionics.Glimmer
@@ -23,7 +22,6 @@ namespace Content.Server.Psionics.Glimmer
 
             SubscribeLocalEvent<GlimmerSourceComponent, AnomalyPulseEvent>(OnAnomalyPulse);
             SubscribeLocalEvent<GlimmerSourceComponent, AnomalySupercriticalEvent>(OnAnomalySupercritical);
-            SubscribeLocalEvent<GlimmerSourceComponent, MobStateChangedEvent>(OnMobStateChanged);
         }
 
         private void OnAnomalyVesselPowerChanged(EntityUid uid, AnomalyVesselComponent component, ref PowerChangedEvent args)
@@ -53,12 +51,6 @@ namespace Content.Server.Psionics.Glimmer
         private void OnAnomalySupercritical(EntityUid uid, GlimmerSourceComponent component, ref AnomalySupercriticalEvent args)
         {
             _glimmerSystem.Glimmer += 100;
-        }
-
-        private void OnMobStateChanged(EntityUid uid, GlimmerSourceComponent component, ref MobStateChangedEvent args)
-        {
-            if (args.NewMobState != MobState.Alive)
-                component.Active = false;
         }
 
         public override void Update(float frameTime)
