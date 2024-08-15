@@ -2,7 +2,6 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Configuration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.Mobs;
 
 namespace Content.Shared.Psionics.Glimmer
 {
@@ -37,7 +36,7 @@ namespace Content.Shared.Psionics.Glimmer
         public float GlimmerOutput
         {
             get { return _glimmerOutput; }
-            private set { _glimmerOutput = _enabled ? Math.Clamp(value, 0, 999.999f) : 0; }
+            private set { _glimmerOutput = _enabled ? Math.Max(value, 0) : 0; }
         }
         private bool _enabled;
         public override void Initialize()

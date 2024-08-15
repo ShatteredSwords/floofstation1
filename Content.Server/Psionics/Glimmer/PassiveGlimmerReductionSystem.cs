@@ -46,8 +46,6 @@ namespace Content.Server.Psionics.Glimmer
 
             _glimmerSystem.DeltaGlimmerOutput(-glimmerDecay);
 
-            GlimmerValues.Add((int) Math.Round(_glimmerSystem.GlimmerOutput));
-
             NextUpdateTime = curTime + TargetUpdatePeriod;
             LastUpdateTime = curTime;
         }
