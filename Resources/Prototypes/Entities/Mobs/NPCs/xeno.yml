@@ -122,10 +122,14 @@
   - type: Speech
     speechVerb: LargeMob
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 0597405a48 (removing some errant instances of potentialpsionic)
   - type: PotentialPsionic #Nyano - Summary: makes potentially psionic.
     chance: -2
   - type: Psionic #Nyano - Summary: makes psionic by default.
     removable: false
+<<<<<<< HEAD
   - type: LanguageKnowledge
     speaks:
     - Xeno
@@ -133,6 +137,8 @@
     - Xeno
 =======
 >>>>>>> parent of f96847f90b (Revert "removing some errant instances of potentialpsionic")
+=======
+>>>>>>> parent of 0597405a48 (removing some errant instances of potentialpsionic)
 
 - type: entity
   name: Praetorian

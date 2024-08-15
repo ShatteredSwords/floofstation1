@@ -119,6 +119,7 @@
     attributes:
       gender: male
 <<<<<<< HEAD
+<<<<<<< HEAD
   - type: PotentialPsionic # Nyano
   - type: LanguageKnowledge
     speaks:
@@ -129,6 +130,9 @@
     - Mouse
 =======
 >>>>>>> parent of f96847f90b (Revert "removing some errant instances of potentialpsionic")
+=======
+  - type: PotentialPsionic # Nyano
+>>>>>>> parent of 0597405a48 (removing some errant instances of potentialpsionic)
 
 - type: entity
   id: MobRatKingBuff
