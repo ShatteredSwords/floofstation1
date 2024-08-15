@@ -18,15 +18,19 @@ public abstract class SharedStrippableSystem : EntitySystem
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public (TimeSpan Time, ThievingStealth Stealth) GetStripTimeModifiers(EntityUid user, EntityUid target, TimeSpan initialTime)
 =======
     public (float Time, bool Stealth) GetStripTimeModifiers(EntityUid user, EntityUid target, float initialTime)
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+    public (TimeSpan Time, bool Stealth) GetStripTimeModifiers(EntityUid user, EntityUid target, TimeSpan initialTime)
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
     {
         var userEv = new BeforeStripEvent(initialTime);
-        RaiseLocalEvent(user, userEv);
+        RaiseLocalEvent(user, ref userEv);
         var ev = new BeforeGettingStrippedEvent(userEv.Time, userEv.Stealth);
-        RaiseLocalEvent(target, ev);
+        RaiseLocalEvent(target, ref ev);
         return (ev.Time, ev.Stealth);
     }
 

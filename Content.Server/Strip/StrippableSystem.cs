@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Ensnaring;
 using Content.Shared.CombatMode;
@@ -21,18 +20,21 @@ using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Server.Strip
 {
     public sealed class StrippableSystem : SharedStrippableSystem
     {
-        [Dependency] private readonly SharedCuffableSystem _cuffable = default!;
-        [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly EnsnareableSystem _ensnaring = default!;
+        [Dependency] private readonly EnsnareableSystem _ensnaringSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
+
+        [Dependency] private readonly SharedCuffableSystem _cuffableSystem = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+        [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+        [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly ThievingSystem _thieving = default!;
 
@@ -49,79 +51,10 @@ namespace Content.Server.Strip
             // BUI
             SubscribeLocalEvent<StrippableComponent, StrippingSlotButtonPressed>(OnStripButtonPressed);
             SubscribeLocalEvent<EnsnareableComponent, StrippingEnsnareButtonPressed>(OnStripEnsnareMessage);
-        }
 
-        private void OnStripEnsnareMessage(EntityUid uid, EnsnareableComponent component, StrippingEnsnareButtonPressed args)
-        {
-            if (args.Session.AttachedEntity is not {Valid: true} user)
-                return;
-
-            foreach (var entity in component.Container.ContainedEntities)
-            {
-                if (!TryComp<EnsnaringComponent>(entity, out var ensnaring))
-                    continue;
-
-                _ensnaring.TryFree(uid, user, entity, ensnaring);
-                return;
-            }
-        }
-
-        private void OnStripButtonPressed(Entity<StrippableComponent> strippable, ref StrippingSlotButtonPressed args)
-        {
-            if (args.Session.AttachedEntity is not {Valid: true} user ||
-                !TryComp<HandsComponent>(user, out var userHands))
-                return;
-
-            if (args.IsHand)
-            {
-                StripHand(user, args.Slot, strippable, userHands);
-                return;
-            }
-
-            if (!TryComp<InventoryComponent>(strippable, out var inventory))
-                return;
-
-            var hasEnt = _inventorySystem.TryGetSlotEntity(strippable, args.Slot, out var held, inventory);
-
-            if (userHands.ActiveHandEntity != null && !hasEnt)
-                PlaceActiveHandItemInInventory(user, strippable, userHands.ActiveHandEntity.Value, args.Slot, strippable);
-            else if (userHands.ActiveHandEntity == null && hasEnt)
-                TakeItemFromInventory(user, strippable, held!.Value, args.Slot, strippable);
-        }
-
-        private void StripHand(EntityUid user, string handId, Entity<StrippableComponent> target, HandsComponent userHands)
-        {
-            if (!_handsSystem.TryGetHand(target, handId, out var hand))
-                return;
-
-            // is the target a handcuff?
-            if (TryComp(hand.HeldEntity, out VirtualItemComponent? virt)
-                && TryComp(target, out CuffableComponent? cuff)
-                && _cuffable.GetAllCuffs(cuff).Contains(virt.BlockingEntity))
-            {
-                _cuffable.TryUncuff(target, user, virt.BlockingEntity, cuffable: cuff);
-                return;
-            }
-
-            if (userHands.ActiveHandEntity != null && hand.HeldEntity == null)
-                PlaceActiveHandItemInHands(user, target, userHands.ActiveHandEntity.Value, handId, target);
-            else if (userHands.ActiveHandEntity == null && hand.HeldEntity != null)
-                TakeItemFromHands(user, target, hand.HeldEntity.Value, handId, target);
-        }
-
-        public override void StartOpeningStripper(EntityUid user, Entity<StrippableComponent> strippable, bool openInCombat = false)
-        {
-            base.StartOpeningStripper(user, strippable, openInCombat);
-
-            if (TryComp<CombatModeComponent>(user, out var mode) && mode.IsInCombatMode && !openInCombat)
-                return;
-
-            if (TryComp<ActorComponent>(user, out var actor))
-            {
-                if (_userInterfaceSystem.SessionHasOpenUi(strippable, StrippingUiKey.Key, actor.PlayerSession))
-                    return;
-                _userInterfaceSystem.TryOpen(strippable, StrippingUiKey.Key, actor.PlayerSession);
-            }
+            // DoAfters
+            SubscribeLocalEvent<HandsComponent, DoAfterAttemptEvent<StrippableDoAfterEvent>>(OnStrippableDoAfterRunning);
+            SubscribeLocalEvent<HandsComponent, StrippableDoAfterEvent>(OnStrippableDoAfterFinished);
         }
 
         private void AddStripVerb(EntityUid uid, StrippableComponent component, GetVerbsEvent<Verb> args)
@@ -135,9 +68,10 @@ namespace Content.Server.Strip
             Verb verb = new()
             {
                 Text = Loc.GetString("strip-verb-get-data-text"),
-                Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
                 Act = () => StartOpeningStripper(args.User, (uid, component), true),
             };
+
             args.Verbs.Add(verb);
         }
 
@@ -152,7 +86,7 @@ namespace Content.Server.Strip
             ExamineVerb verb = new()
             {
                 Text = Loc.GetString("strip-verb-get-data-text"),
-                Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
                 Act = () => StartOpeningStripper(args.User, (uid, component), true),
                 Category = VerbCategory.Examine,
             };
@@ -172,6 +106,9 @@ namespace Content.Server.Strip
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
         public override void StartOpeningStripper(EntityUid user, Entity<StrippableComponent> strippable, bool openInCombat = false)
         {
             base.StartOpeningStripper(user, strippable, openInCombat);
@@ -179,7 +116,11 @@ namespace Content.Server.Strip
             if (TryComp<CombatModeComponent>(user, out var mode) && mode.IsInCombatMode && !openInCombat)
                 return;
 
+<<<<<<< HEAD
             if (TryComp<ActorComponent>(user, out var actor) && HasComp<StrippingComponent>(user))
+=======
+            if (TryComp<ActorComponent>(user, out var actor))
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
             {
                 if (_userInterfaceSystem.SessionHasOpenUi(strippable, StrippingUiKey.Key, actor.PlayerSession))
                     return;
@@ -254,45 +195,67 @@ namespace Content.Server.Strip
             }
         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
         /// <summary>
-        ///     Places item in user's active hand to an inventory slot.
+        ///     Checks whether the item is in a user's active hand and whether it can be inserted into the inventory slot.
         /// </summary>
-        private async void PlaceActiveHandItemInInventory(
-            EntityUid user,
+        private bool CanStripInsertInventory(
+            Entity<HandsComponent?> user,
             EntityUid target,
             EntityUid held,
-            string slot,
-            StrippableComponent component)
+            string slot)
         {
-            var userHands = Comp<HandsComponent>(user);
+            if (!Resolve(user, ref user.Comp))
+                return false;
 
-            bool Check()
+            if (user.Comp.ActiveHand == null)
+                return false;
+
+            if (user.Comp.ActiveHandEntity == null)
+                return false;
+
+            if (user.Comp.ActiveHandEntity != held)
+                return false;
+
+            if (!_handsSystem.CanDropHeld(user, user.Comp.ActiveHand))
             {
-                if (userHands.ActiveHandEntity != held)
-                    return false;
-
-                if (!_handsSystem.CanDropHeld(user, userHands.ActiveHand!))
-                {
-                    _popup.PopupCursor(Loc.GetString("strippable-component-cannot-drop"), user);
-                    return false;
-                }
-
-                if (_inventorySystem.TryGetSlotEntity(target, slot, out _))
-                {
-                    _popup.PopupCursor(Loc.GetString("strippable-component-item-slot-occupied",("owner", target)), user);
-                    return false;
-                }
-
-                if (!_inventorySystem.CanEquip(user, target, held, slot, out _))
-                {
-                    _popup.PopupCursor(Loc.GetString("strippable-component-cannot-equip-message",("owner", target)), user);
-                    return false;
-                }
-
-                return true;
+                _popupSystem.PopupCursor(Loc.GetString("strippable-component-cannot-drop"), user);
+                return false;
             }
+
+            if (_inventorySystem.TryGetSlotEntity(target, slot, out _))
+            {
+                _popupSystem.PopupCursor(Loc.GetString("strippable-component-item-slot-occupied", ("owner", target)), user);
+                return false;
+            }
+
+            if (!_inventorySystem.CanEquip(user, target, held, slot, out _))
+            {
+                _popupSystem.PopupCursor(Loc.GetString("strippable-component-cannot-equip-message", ("owner", target)), user);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///     Begins a DoAfter to insert the item in the user's active hand into the inventory slot.
+        /// </summary>
+        private void StartStripInsertInventory(
+            Entity<HandsComponent?> user,
+            EntityUid target,
+            EntityUid held,
+            string slot)
+        {
+            if (!Resolve(user, ref user.Comp))
+                return;
+
+            if (!CanStripInsertInventory(user, target, held, slot))
+                return;
 
             if (!_inventorySystem.TryGetSlot(target, slot, out var slotDef))
             {
@@ -300,11 +263,9 @@ namespace Content.Server.Strip
                 return;
             }
 
-            var userEv = new BeforeStripEvent(slotDef.StripTime);
-            RaiseLocalEvent(user, userEv);
-            var ev = new BeforeGettingStrippedEvent(userEv.Time, userEv.Stealth);
-            RaiseLocalEvent(target, ev);
+            var (time, stealth) = GetStripTimeModifiers(user, target, slotDef.StripTime);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             bool hidden = stealth == ThievingStealth.Hidden;
 
@@ -334,16 +295,17 @@ namespace Content.Server.Strip
 
             var prefix = ev.Stealth ? "stealthily " : "";
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+            if (!stealth)
+                _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner-insert", ("user", Identity.Entity(user, EntityManager)), ("item", user.Comp.ActiveHandEntity!.Value)), target, target, PopupType.Large);
+
+            var prefix = stealth ? "stealthily " : "";
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
             _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}place the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s {slot} slot");
 
-            var result = await _doAfter.WaitDoAfter(doAfterArgs);
-            if (result != DoAfterStatus.Finished)
-                return;
-
-            DebugTools.Assert(userHands.ActiveHand?.HeldEntity == held);
-
-            if (_handsSystem.TryDrop(user, handsComp: userHands))
+            var doAfterArgs = new DoAfterArgs(EntityManager, user, time, new StrippableDoAfterEvent(true, true, slot), user, target, held)
             {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 Hidden = hidden,
 =======
@@ -397,6 +359,9 @@ namespace Content.Server.Strip
                 ExtraCheck = Check,
                 Hidden = ev.Stealth,
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+                Hidden = stealth,
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
                 AttemptFrequency = AttemptFrequency.EveryTick,
                 BreakOnDamage = true,
                 BreakOnTargetMove = true,
@@ -405,44 +370,69 @@ namespace Content.Server.Strip
                 DuplicateCondition = DuplicateConditions.SameTool
             };
 
-            var prefix = ev.Stealth ? "stealthily " : "";
-                _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}place the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
-
-            var result = await _doAfter.WaitDoAfter(doAfterArgs);
-            if (result != DoAfterStatus.Finished) return;
-
-            _handsSystem.TryDrop(user, checkActionBlocker: false, handsComp: userHands);
-            _handsSystem.TryPickup(target, held, handName, checkActionBlocker: false, animateUser: !ev.Stealth, animate: !ev.Stealth, handsComp: hands);
-            _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
-            // hand update will trigger strippable update
+            _doAfterSystem.TryStartDoAfter(doAfterArgs);
         }
 
         /// <summary>
-        ///     Takes an item from the inventory and places it in the user's active hand.
+        ///     Inserts the item in the user's active hand into the inventory slot.
         /// </summary>
-        private async void TakeItemFromInventory(
+        private void StripInsertInventory(
+            Entity<HandsComponent?> user,
+            EntityUid target,
+            EntityUid held,
+            string slot)
+        {
+            if (!Resolve(user, ref user.Comp))
+                return;
+
+            if (!CanStripInsertInventory(user, target, held, slot))
+                return;
+
+            if (!_handsSystem.TryDrop(user, handsComp: user.Comp))
+                return;
+
+            _inventorySystem.TryEquip(user, target, held, slot);
+            _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s {slot} slot");
+        }
+
+        /// <summary>
+        ///     Checks whether the item can be removed from the target's inventory.
+        /// </summary>
+        private bool CanStripRemoveInventory(
             EntityUid user,
             EntityUid target,
             EntityUid item,
-            string slot,
-            Entity<StrippableComponent> strippable)
+            string slot)
         {
-            bool Check()
+            if (!_inventorySystem.TryGetSlotEntity(target, slot, out var slotItem))
             {
-                if (!_inventorySystem.TryGetSlotEntity(target, slot, out var ent) && ent == item)
-                {
-                    _popup.PopupCursor(Loc.GetString("strippable-component-item-slot-free-message", ("owner", target)), user);
-                    return false;
-                }
-
-                if (!_inventorySystem.CanUnequip(user, target, slot, out var reason))
-                {
-                    _popup.PopupCursor(Loc.GetString(reason), user);
-                    return false;
-                }
-
-                return true;
+                _popupSystem.PopupCursor(Loc.GetString("strippable-component-item-slot-free-message", ("owner", target)), user);
+                return false;
             }
+
+            if (slotItem != item)
+                return false;
+
+            if (!_inventorySystem.CanUnequip(user, target, slot, out var reason))
+            {
+                _popupSystem.PopupCursor(Loc.GetString(reason), user);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///     Begins a DoAfter to remove the item from the target's inventory and insert it in the user's active hand.
+        /// </summary>
+        private void StartStripRemoveInventory(
+            EntityUid user,
+            EntityUid target,
+            EntityUid item,
+            string slot)
+        {
+            if (!CanStripRemoveInventory(user, target, item, slot))
+                return;
 
             if (!_inventorySystem.TryGetSlot(target, slot, out var slotDef))
             {
@@ -450,11 +440,9 @@ namespace Content.Server.Strip
                 return;
             }
 
-            var userEv = new BeforeStripEvent(slotDef.StripTime);
-            RaiseLocalEvent(user, userEv);
-            var ev = new BeforeGettingStrippedEvent(userEv.Time, userEv.Stealth);
-            RaiseLocalEvent(target, ev);
+            var (time, stealth) = GetStripTimeModifiers(user, target, slotDef.StripTime);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             bool hidden = stealth == ThievingStealth.Hidden;
 
@@ -497,18 +485,32 @@ namespace Content.Server.Strip
             if (!CanStripRemoveInventory(user, target, item, slot))
 =======
             var doAfterArgs = new DoAfterArgs(EntityManager, user, ev.Time, new AwaitedDoAfterEvent(), null, target: target, used: item)
+=======
+            if (!stealth)
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
             {
-                ExtraCheck = Check,
-                Hidden = ev.Stealth,
+                if (slotDef.StripHidden)
+                    _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner-hidden", ("slot", slot)), target, target, PopupType.Large);
+                else
+                    _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner", ("user", Identity.Entity(user, EntityManager)), ("item", item)), target, target, PopupType.Large);
+            }
+
+            var prefix = stealth ? "stealthily " : "";
+            _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
+
+            var doAfterArgs = new DoAfterArgs(EntityManager, user, time, new StrippableDoAfterEvent(false, true, slot), user, target, item)
+            {
+                Hidden = stealth,
                 AttemptFrequency = AttemptFrequency.EveryTick,
                 BreakOnDamage = true,
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,
                 NeedHand = true,
-                BreakOnHandChange = false, // allow simultaneously removing multiple items.
+                BreakOnHandChange = false, // Allow simultaneously removing multiple items.
                 DuplicateCondition = DuplicateConditions.SameTool
             };
 
+<<<<<<< HEAD
             if (!ev.Stealth && Check())
             {
                 if (slotDef.StripHidden)
@@ -544,44 +546,68 @@ namespace Content.Server.Strip
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
             _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
 
+=======
+            _doAfterSystem.TryStartDoAfter(doAfterArgs);
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
         }
 
         /// <summary>
-        ///     Takes an item from a hand and places it in the user's active hand.
+        ///     Removes the item from the target's inventory and inserts it in the user's active hand.
         /// </summary>
-        private async void TakeItemFromHands(EntityUid user, EntityUid target, EntityUid item, string handName, Entity<StrippableComponent> strippable)
+        private void StripRemoveInventory(
+            EntityUid user,
+            EntityUid target,
+            EntityUid item,
+            string slot,
+            bool stealth)
         {
-            var hands = Comp<HandsComponent>(target);
-            var userHands = Comp<HandsComponent>(user);
+            if (!CanStripRemoveInventory(user, target, item, slot))
+                return;
 
-            bool Check()
+            if (!_inventorySystem.TryUnequip(user, target, slot))
+                return;
+
+            RaiseLocalEvent(item, new DroppedEvent(user), true); // Gas tank internals etc.
+
+            _handsSystem.PickupOrDrop(user, item, animateUser: stealth, animate: stealth);
+            _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
+        }
+
+        /// <summary>
+        ///     Checks whether the item in the user's active hand can be inserted into one of the target's hands.
+        /// </summary>
+        private bool CanStripInsertHand(
+            Entity<HandsComponent?> user,
+            Entity<HandsComponent?> target,
+            EntityUid held,
+            string handName)
+        {
+            if (!Resolve(user, ref user.Comp) ||
+                !Resolve(target, ref target.Comp))
+                return false;
+
+            if (user.Comp.ActiveHand == null)
+                return false;
+
+            if (user.Comp.ActiveHandEntity == null)
+                return false;
+
+            if (user.Comp.ActiveHandEntity != held)
+                return false;
+
+            if (!_handsSystem.CanDropHeld(user, user.Comp.ActiveHand))
             {
-                if (!_handsSystem.TryGetHand(target, handName, out var hand, hands) || hand.HeldEntity != item)
-                {
-                    _popup.PopupCursor(Loc.GetString("strippable-component-item-slot-free-message",("owner", target)), user);
-                    return false;
-                }
-
-                if (HasComp<VirtualItemComponent>(hand.HeldEntity))
-                    return false;
-
-                if (!_handsSystem.CanDropHeld(target, hand, false))
-                {
-                    _popup.PopupCursor(Loc.GetString("strippable-component-cannot-drop-message",("owner", target)), user);
-                    return false;
-                }
-
-                return true;
+                _popupSystem.PopupCursor(Loc.GetString("strippable-component-cannot-drop"), user);
+                return false;
             }
 
-            var userEv = new BeforeStripEvent(strippable.Comp.HandStripDelay);
-            RaiseLocalEvent(user, userEv);
-            var ev = new BeforeGettingStrippedEvent(userEv.Time, userEv.Stealth);
-            RaiseLocalEvent(target, ev);
-
-            var doAfterArgs = new DoAfterArgs(EntityManager, user, ev.Time, new AwaitedDoAfterEvent(), null, target: target, used: item)
+            if (!_handsSystem.TryGetHand(target, handName, out var handSlot, target.Comp) ||
+                !_handsSystem.CanPickupToHand(target, user.Comp.ActiveHandEntity.Value, handSlot, checkActionBlocker: false, target.Comp))
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
                 _popupSystem.PopupCursor(Loc.GetString("strippable-component-cannot-put-message", ("owner", target)), user);
                 return false;
             }
@@ -609,27 +635,35 @@ namespace Content.Server.Strip
 
             var (time, stealth) = GetStripTimeModifiers(user, target, targetStrippable.HandStripDelay);
 
+<<<<<<< HEAD
             bool hidden = stealth == ThievingStealth.Hidden;
 
             var prefix = hidden ? "stealthily " : "";
+=======
+            var prefix = stealth ? "stealthily " : "";
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
             _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}place the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
 
             var doAfterArgs = new DoAfterArgs(EntityManager, user, time, new StrippableDoAfterEvent(true, false, handName), user, target, held)
             {
+<<<<<<< HEAD
                 Hidden = hidden,
 =======
                 ExtraCheck = Check,
                 Hidden = ev.Stealth,
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+                Hidden = stealth,
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
                 AttemptFrequency = AttemptFrequency.EveryTick,
                 BreakOnDamage = true,
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,
                 NeedHand = true,
-                BreakOnHandChange = false, // allow simultaneously removing multiple items.
                 DuplicateCondition = DuplicateConditions.SameTool
             };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             _doAfterSystem.TryStartDoAfter(doAfterArgs);
         }
@@ -681,32 +715,117 @@ namespace Content.Server.Strip
                     strippable.Owner,
                     strippable.Owner);
             }
+=======
+            _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        }
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
 
-            var prefix = ev.Stealth ? "stealthily " : "";
-            _adminLogger.Add(LogType.Stripping, LogImpact.Low,
-                $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
-
-            var result = await _doAfter.WaitDoAfter(doAfterArgs);
-            if (result != DoAfterStatus.Finished)
+        /// <summary>
+        ///     Places the item in the user's active hand into one of the target's hands.
+        /// </summary>
+        private void StripInsertHand(
+            Entity<HandsComponent?> user,
+            Entity<HandsComponent?> target,
+            EntityUid held,
+            string handName,
+            bool stealth)
+        {
+            if (!Resolve(user, ref user.Comp) ||
+                !Resolve(target, ref target.Comp))
                 return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            if (!CanStripInsertHand(user, target, held, handName))
+                return;
+
+            _handsSystem.TryDrop(user, checkActionBlocker: false, handsComp: user.Comp);
+            _handsSystem.TryPickup(target, held, handName, checkActionBlocker: false, animateUser: stealth, animate: stealth, handsComp: target.Comp);
+            _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
+
+            // Hand update will trigger strippable update.
+        }
+
+        /// <summary>
+        ///     Checks whether the item is in the target's hand and whether it can be dropped.
+        /// </summary>
+        private bool CanStripRemoveHand(
+            EntityUid user,
+            Entity<HandsComponent?> target,
+            EntityUid item,
+            string handName)
+        {
+            if (!Resolve(target, ref target.Comp))
+                return false;
+
+            if (!_handsSystem.TryGetHand(target, handName, out var handSlot, target.Comp))
+            {
+                _popupSystem.PopupCursor(Loc.GetString("strippable-component-item-slot-free-message", ("owner", target)), user);
+                return false;
+            }
+
+            if (HasComp<VirtualItemComponent>(handSlot.HeldEntity))
+                return false;
+
+            if (handSlot.HeldEntity == null)
+                return false;
+
+            if (handSlot.HeldEntity != item)
+                return false;
+
+            if (!_handsSystem.CanDropHeld(target, handSlot, false))
+            {
+                _popupSystem.PopupCursor(Loc.GetString("strippable-component-cannot-drop-message", ("owner", target)), user);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///     Begins a DoAfter to remove the item from the target's hand and insert it in the user's active hand.
+        /// </summary>
+        private void StartStripRemoveHand(
+            Entity<HandsComponent?> user,
+            Entity<HandsComponent?> target,
+            EntityUid item,
+            string handName,
+            StrippableComponent? targetStrippable = null)
+        {
+            if (!Resolve(user, ref user.Comp) ||
+                !Resolve(target, ref target.Comp) ||
+                !Resolve(target, ref targetStrippable))
+                return;
+
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
             if (!CanStripRemoveHand(user, target, item, handName))
                 return;
 
             var (time, stealth) = GetStripTimeModifiers(user, target, targetStrippable.HandStripDelay);
 
+<<<<<<< HEAD
             bool hidden = stealth == ThievingStealth.Hidden;
 
             if (!hidden)
                 StripPopup("strippable-component-alert-owner", stealth, target, user: Identity.Entity(user, EntityManager), item: item);
 
             var prefix = hidden ? "stealthily " : "";
+=======
+            if (!stealth)
+                _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner", ("user", Identity.Entity(user, EntityManager)), ("item", item)), target, target);
+
+            var prefix = stealth ? "stealthily " : "";
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
             _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
 
             var doAfterArgs = new DoAfterArgs(EntityManager, user, time, new StrippableDoAfterEvent(false, false, handName), user, target, item)
             {
+<<<<<<< HEAD
                 Hidden = hidden,
+=======
+                Hidden = stealth,
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
                 AttemptFrequency = AttemptFrequency.EveryTick,
                 BreakOnDamage = true,
                 BreakOnTargetMove = true,
@@ -727,7 +846,11 @@ namespace Content.Server.Strip
             Entity<HandsComponent?> target,
             EntityUid item,
             string handName,
+<<<<<<< HEAD
             bool hidden)
+=======
+            bool stealth)
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
         {
             if (!Resolve(user, ref user.Comp) ||
                 !Resolve(target, ref target.Comp))
@@ -737,7 +860,11 @@ namespace Content.Server.Strip
                 return;
 
             _handsSystem.TryDrop(target, item, checkActionBlocker: false, handsComp: target.Comp);
+<<<<<<< HEAD
             _handsSystem.PickupOrDrop(user, item, animateUser: hidden, animate: hidden, handsComp: user.Comp);
+=======
+            _handsSystem.PickupOrDrop(user, item, animateUser: stealth, animate: stealth, handsComp: user.Comp);
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
             _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
 
             // Hand update will trigger strippable update.
@@ -788,6 +915,7 @@ namespace Content.Server.Strip
                         StripInsertHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
                 else    StripRemoveHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
             }
+<<<<<<< HEAD
 =======
             _handsSystem.TryDrop(target, item, checkActionBlocker: false, handsComp: hands);
             _handsSystem.PickupOrDrop(user, item, animateUser: !ev.Stealth, animate: !ev.Stealth, handsComp: userHands);
@@ -795,6 +923,8 @@ namespace Content.Server.Strip
             _adminLogger.Add(LogType.Stripping, LogImpact.Medium,
                 $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
         }
     }
 }

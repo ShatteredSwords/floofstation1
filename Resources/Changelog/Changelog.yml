@@ -4252,6 +4252,9 @@ Entries:
   id: 6131
   time: '2024-06-27T17:46:51.0000000+00:00'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
 - author: Mnemotechnician
   changes:
     - type: Add
@@ -4263,7 +4266,11 @@ Entries:
     - type: Fix
       message: >-
         Spent bullet casings now fly away from a shooter in a cinematic manner,
+<<<<<<< HEAD
         rather than fall at their feet.
+=======
+        rather than fall at their feet. 
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
   id: 6133
   time: '2024-07-01T22:37:29.0000000+00:00'
 - author: WarMechanic
@@ -4286,6 +4293,7 @@ Entries:
       message: Equipping clothing using the Z key works correctly again.
   id: 6136
   time: '2024-07-03T19:48:29.0000000+00:00'
+<<<<<<< HEAD
 - author: Mnemotechnician
   changes:
     - type: Tweak
@@ -4937,3 +4945,5 @@ Entries:
   time: '2024-08-05T17:15:51.0000000+00:00'
 =======
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")

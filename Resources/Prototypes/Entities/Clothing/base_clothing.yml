@@ -17,7 +17,13 @@
     unequipDelay: 0.5
 =======
     price: 15
+<<<<<<< HEAD
 >>>>>>> parent of 23059a860d (Reapply "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
+=======
+  - type: Clothing
+    equipDelay: 0.5
+    unequipDelay: 0.5
+>>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
 
 - type: entity
   abstract: true
