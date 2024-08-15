@@ -39,6 +39,7 @@ trait-name-LatentPsychic = Latent Psychic
 trait-description-LatentPsychic = Your mind and soul are open to the noosphere, allowing for a limited use of Telepathy.
                                   Thus, you are eligible for potentially receiving psychic powers.
                                   It is possible that you may be hunted by otherworldly forces, so consider keeping your powers a secret.
+<<<<<<< HEAD
 
 trait-name-PsionicInsulation = χ Waveform Misalignment
 trait-description-PsionicInsulation = Through a quirk of fate, your brainwaves are permanently out of phase with the noösphere
@@ -98,3 +99,5 @@ trait-description-MilkProducer = You have a pair of large mammaries.
 
 trait-name-SquirtProducer = Pussy
 trait-description-SquirtProducer = You have a slit between your legs.
+=======
+>>>>>>> parent of d0cb65af8f (Partial Glimmer Refactor & Pyromancy Full Refactor)
