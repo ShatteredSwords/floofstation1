@@ -4,10 +4,10 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Chemistry.EntitySystems;
 using Content.Server.DoAfter;
 using Content.Shared.Abilities.Psionics;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Actions;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.DoAfter;
@@ -18,6 +18,10 @@ using Content.Shared.Tag;
 using Content.Shared.Examine;
 using static Content.Shared.Examine.ExamineSystemShared;
 using Robust.Shared.Timing;
+using Content.Server.Mind;
+using Content.Shared.Actions.Events;
+using Content.Shared.Chemistry.EntitySystems;
+using Robust.Server.Audio;
 
 namespace Content.Server.Abilities.Psionics
 {
@@ -33,6 +37,7 @@ namespace Content.Server.Abilities.Psionics
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly MindSystem _mindSystem = default!;
 
 
         public override void Initialize()
@@ -48,22 +53,21 @@ namespace Content.Server.Abilities.Psionics
 
         private void OnInit(EntityUid uid, PsionicRegenerationPowerComponent component, ComponentInit args)
         {
-            if (!_prototypeManager.TryIndex<InstantActionPrototype>("PsionicRegeneration", out var metapsionic))
-                return;
-
-            component.PsionicRegenerationPowerAction = new InstantAction(metapsionic);
-            if (metapsionic.UseDelay != null)
-                component.PsionicRegenerationPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) metapsionic.UseDelay);
-            _actions.AddAction(uid, component.PsionicRegenerationPowerAction, null);
-
+            _actions.AddAction(uid, ref component.PsionicRegenerationActionEntity, component.PsionicRegenerationActionId );
+            _actions.TryGetActionData( component.PsionicRegenerationActionEntity, out var actionData );
+            if (actionData is { UseDelay: not null })
+                _actions.StartUseDelay(component.PsionicRegenerationActionEntity);
             if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
-                psionic.PsionicAbility = component.PsionicRegenerationPowerAction;
+            {
+                psionic.PsionicAbility = component.PsionicRegenerationActionEntity;
+                psionic.ActivePowers.Add(component);
+            }
         }
 
         private void OnPowerUsed(EntityUid uid, PsionicRegenerationPowerComponent component, PsionicRegenerationPowerActionEvent args)
         {
             var ev = new PsionicRegenerationDoAfterEvent(_gameTiming.CurTime);
-            var doAfterArgs = new DoAfterArgs(uid, component.UseDelay, ev, uid);
+            var doAfterArgs = new DoAfterArgs(EntityManager, uid, component.UseDelay, ev, uid);
 
             _doAfterSystem.TryStartDoAfter(doAfterArgs, out var doAfterId);
 
@@ -83,8 +87,12 @@ namespace Content.Server.Abilities.Psionics
 
         private void OnShutdown(EntityUid uid, PsionicRegenerationPowerComponent component, ComponentShutdown args)
         {
-            if (_prototypeManager.TryIndex<InstantActionPrototype>("PsionicRegeneration", out var metapsionic))
-                _actions.RemoveAction(uid, new InstantAction(metapsionic), null);
+            _actions.RemoveAction(uid, component.PsionicRegenerationActionEntity);
+
+            if (TryComp<PsionicComponent>(uid, out var psionic))
+            {
+                psionic.ActivePowers.Remove(component);
+            }
         }
 
         private void OnDispelled(EntityUid uid, PsionicRegenerationPowerComponent component, DispelledEvent args)
@@ -116,7 +124,5 @@ namespace Content.Server.Abilities.Psionics
             _bloodstreamSystem.TryAddToChemicals(uid, solution, stream);
         }
     }
-
-    public sealed class PsionicRegenerationPowerActionEvent : InstantActionEvent {}
 }
 

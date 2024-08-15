@@ -103,29 +103,15 @@
     event: !type:PyrokinesisPowerActionEvent
 
 - type: entity
-  id: ActionWideMetapsionic
-  name: action-name-widemetapsionic
-  description: action-description-widemetapsionic
+  id: ActionMetapsionic
+  name: action-name-metapsionic
+  description: action-description-metapsionic
   noSpawn: true
   components:
   - type: InstantAction
     icon: Nyanotrasen/Interface/VerbIcons/metapsionic.png
     useDelay: 45
-    event: !type:WideMetapsionicPowerActionEvent
-
-- type: entity
-  id: ActionFocusedMetapsionic
-  name: action-name-focusedmetapsionic
-  description: action-description-focusedmetapsionic
-  noSpawn: true
-  components:
-  - type: EntityTargetAction
-    icon: Nyanotrasen/Interface/VerbIcons/metapsionic.png
-    useDelay: 45
-    range: 3
-    checkCanAccess: false
-    itemIconStyle: BigAction
-    event: !type:FocusedMetapsionicPowerActionEvent
+    event: !type:MetapsionicPowerActionEvent
 
 - type: entity
   id: ActionPsionicRegeneration
