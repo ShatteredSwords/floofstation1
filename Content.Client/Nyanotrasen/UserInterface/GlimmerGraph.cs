@@ -4,7 +4,7 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Psionics.UI;
+namespace Content.Client.Nyanotrasen.UserInterface;
 
 public sealed class GlimmerGraph : Control
 {

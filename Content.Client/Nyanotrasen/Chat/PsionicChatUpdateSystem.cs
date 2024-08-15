@@ -1,8 +1,8 @@
-using Content.Shared.Psionics.Abilities;
+using Content.Shared.Abilities.Psionics;
 using Content.Client.Chat.Managers;
 using Robust.Client.Player;
 
-namespace Content.Client.Psionics.Chat
+namespace Content.Client.Nyanotrasen.Chat
 {
     public sealed class PsionicChatUpdateSystem : EntitySystem
     {
