@@ -5,20 +5,17 @@ using Content.Server.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Content.Shared.Actions.Events;
 using Content.Server.Explosion.Components;
-using Content.Shared.Mobs.Components;
-using Robust.Shared.Map;
 
 namespace Content.Server.Psionics.Abilities
 {
     public sealed class PyrokinesisPowerSystem : EntitySystem
     {
-        [Dependency] private readonly TransformSystem _xform = default!;
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
         [Dependency] private readonly GunSystem _gunSystem = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly PhysicsSystem _physics = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -59,15 +56,7 @@ namespace Content.Server.Psionics.Abilities
 
             if (!HasComp<PsionicInsulationComponent>(args.Performer))
             {
-                var xformQuery = GetEntityQuery<TransformComponent>();
-                var xform = xformQuery.GetComponent(args.Performer);
-
-                var mapPos = xform.Coordinates.ToMap(EntityManager, _xform);
-                var spawnCoords = _mapManager.TryFindGridAt(mapPos, out var gridUid, out _)
-                    ? xform.Coordinates.WithEntityId(gridUid, EntityManager)
-                    : new(_mapManager.GetMapEntityId(mapPos.MapId), mapPos.Position);
-
-                var ent = Spawn("ProjectileAnomalyFireball", spawnCoords);
+                var ent = Spawn("ProjectileAnomalyFireball");
 
                 if (TryComp<ExplosiveComponent>(ent, out var fireball))
                 {
@@ -80,7 +69,7 @@ namespace Content.Server.Psionics.Abilities
                 }
 
                 var userVelocity = _physics.GetMapLinearVelocity(args.Performer);
-                var direction = args.Target.Position;
+                var direction = args.Target.ToMapPos(EntityManager, _transformSystem);
 
                 _gunSystem.ShootProjectile(ent, direction, userVelocity, args.Performer, args.Performer, 20f);
 
