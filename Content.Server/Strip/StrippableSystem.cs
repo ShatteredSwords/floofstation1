@@ -131,12 +131,13 @@ namespace Content.Server.Strip
         private void OnStripButtonPressed(Entity<StrippableComponent> strippable, ref StrippingSlotButtonPressed args)
         {
             if (args.Session.AttachedEntity is not { Valid: true } user ||
-                !TryComp<HandsComponent>(user, out var userHands))
+                !TryComp<HandsComponent>(user, out var userHands) ||
+                !TryComp<HandsComponent>(strippable.Owner, out var targetHands))
                 return;
 
             if (args.IsHand)
             {
-                StripHand((user, userHands), (strippable.Owner, null), args.Slot, strippable);
+                StripHand((user, userHands), (strippable.Owner, targetHands), args.Slot, strippable);
                 return;
             }
 
@@ -736,10 +737,13 @@ namespace Content.Server.Strip
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             if (!CanStripInsertHand(user, target, held, handName))
                 return;
 
+=======
+>>>>>>> parent of 7b89ce1326 (Cherrypick "Fix StrippableSystem Blunders" (#504))
             _handsSystem.TryDrop(user, checkActionBlocker: false, handsComp: user.Comp);
             _handsSystem.TryPickup(target, held, handName, checkActionBlocker: false, animateUser: stealth, animate: stealth, handsComp: target.Comp);
             _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
@@ -813,7 +817,7 @@ namespace Content.Server.Strip
             var prefix = hidden ? "stealthily " : "";
 =======
             if (!stealth)
-                _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner", ("user", Identity.Entity(user, EntityManager)), ("item", item)), target, target);
+                _popupSystem.PopupEntity( Loc.GetString("strippable-component-alert-owner", ("user", Identity.Entity(user, EntityManager)), ("item", item)), target, target);
 
             var prefix = stealth ? "stealthily " : "";
 >>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
@@ -845,18 +849,18 @@ namespace Content.Server.Strip
             Entity<HandsComponent?> user,
             Entity<HandsComponent?> target,
             EntityUid item,
+<<<<<<< HEAD
             string handName,
 <<<<<<< HEAD
             bool hidden)
 =======
+=======
+>>>>>>> parent of 7b89ce1326 (Cherrypick "Fix StrippableSystem Blunders" (#504))
             bool stealth)
 >>>>>>> parent of 2f3ee29ec0 (Revert "Merge branch 'Simple-Station:master' into Psionic-Power-Refactor")
         {
             if (!Resolve(user, ref user.Comp) ||
                 !Resolve(target, ref target.Comp))
-                return;
-
-            if (!CanStripRemoveHand(user, target, item, handName))
                 return;
 
             _handsSystem.TryDrop(target, item, checkActionBlocker: false, handsComp: target.Comp);
@@ -913,7 +917,7 @@ namespace Content.Server.Strip
             {
                 if (ev.InsertOrRemove)
                         StripInsertHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
-                else    StripRemoveHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
+                else    StripRemoveHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.Args.Hidden);
             }
 <<<<<<< HEAD
 =======
