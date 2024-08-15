@@ -74,6 +74,10 @@ namespace Content.Shared.Psionics.Glimmer
         }
 
         // Ignore the bracket warnings on these, Intellisense is wrong and doesn't understand polynomials.
+        /// <summary>
+        ///     The primary intended accessors for
+        /// </summary>
+        /// <param name="delta"></param>
         public void DeltaGlimmerInput(float delta)
         {
             if (_enabled && delta != 0)
