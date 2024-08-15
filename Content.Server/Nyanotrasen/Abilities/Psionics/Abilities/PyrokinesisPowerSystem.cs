@@ -34,8 +34,9 @@ namespace Content.Server.Abilities.Psionics
             _actions.TryGetActionData( component.PyrokinesisActionEntity, out var actionData );
             if (actionData is { UseDelay: not null })
                 _actions.StartUseDelay(component.PyrokinesisActionEntity);
-            if (TryComp<PsionicComponent>(uid, out var psionic))
+            if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             {
+                psionic.PsionicAbility = component.PyrokinesisActionEntity;
                 psionic.ActivePowers.Add(component);
                 psionic.PsychicFeedback.Add(component.PyrokinesisFeedback);
             }
