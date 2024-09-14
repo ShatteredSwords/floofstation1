@@ -88,7 +88,7 @@
 
 - type: characterItemGroup
   id: LoadoutPlushies
-  maxItems: 1
+  maxItems: 2
   items:
     - type: loadout
       id: LoadoutItemPlushieBee
