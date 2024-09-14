@@ -40,3 +40,48 @@
       id: LoadoutItemLewdVibeRed
     - type: loadout
       id: LoadoutItemLewdVibeYellow
+
+- type: characterItemGroup
+  id: LoadoutCannedDrinks
+  maxItems: 1
+  items:
+    - type: loadout
+      id: LoadoutItemDrinkNNNCan
+    - type: loadout
+      id: LoadoutItemDrinkColaCan
+    - type: loadout
+      id: LoadoutItemDrinkIcedTeaCan
+    - type: loadout
+      id: LoadoutItemDrinkLemonLimeCan
+    - type: loadout
+      id: LoadoutItemDrinkGrapeCan
+    - type: loadout
+      id: LoadoutItemDrinkRootBeerCan
+    - type: loadout
+      id: LoadoutItemDrinkSodaWaterCan
+    - type: loadout
+      id: LoadoutItemDrinkSpaceMountainWindCan
+    - type: loadout
+      id: LoadoutItemDrinkSpaceUpCan
+    - type: loadout
+      id: LoadoutItemDrinkSolDryCan
+    - type: loadout
+      id: LoadoutItemDrinkStarkistCan
+    - type: loadout
+      id: LoadoutItemDrinkTonicWaterCan
+    - type: loadout
+      id: LoadoutItemDrinkFourteenLokoCan
+    - type: loadout
+      id: LoadoutItemDrinkChangelingStingCan
+    - type: loadout
+      id: LoadoutItemDrinkDrGibbCan
+    - type: loadout
+      id: LoadoutItemDrinkEnergyDrinkCan
+    - type: loadout
+      id: LoadoutItemDrinkShamblersJuiceCan
+    - type: loadout
+      id: LoadoutItemDrinkPwrGameCan
+    - type: loadout
+      id: LoadoutItemDrinkBeerCan
+    - type: loadout
+      id: LoadoutItemDrinkWineCan

@@ -1,0 +1,199 @@
+- type: loadout
+  id: LoadoutItemDrinkNNNCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkNNNCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkColaCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkColaCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkIcedTeaCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkIcedTeaCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkLemonLimeCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkLemonLimeCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkGrapeCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkGrapeCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkRootBeerCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkRootBeerCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkSodaWaterCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkSodaWaterCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkSpaceMountainWindCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkSpaceMountainWindCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkSpaceUpCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkSpaceUpCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkSolDryCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkSolDryCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkStarkistCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkStarkistCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkTonicWaterCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkTonicWaterCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkFourteenLokoCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkFourteenLokoCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkChangelingStingCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkChangelingStingCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkDrGibbCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkDrGibbCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkEnergyDrinkCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkEnergyDrinkCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkShamblersJuiceCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkShamblersJuiceCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkPwrGameCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkPwrGameCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkBeerCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkBeerCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
+
+- type: loadout
+  id: LoadoutItemDrinkWineCan
+  category: Items
+  cost: 1
+  items:
+    - DrinkWineCan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutCannedDrinks
