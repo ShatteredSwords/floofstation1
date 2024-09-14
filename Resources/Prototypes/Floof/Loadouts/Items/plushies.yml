@@ -527,3 +527,23 @@
   requirements:
     - !type:CharacterItemGroupRequirement
       group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemToyRenault
+  category: Items
+  cost: 1
+  items:
+    - ToyRenault
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemToySiobhan
+  category: Items
+  cost: 1
+  items:
+    - ToySiobhan
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies

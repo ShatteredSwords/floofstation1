@@ -43,7 +43,6 @@
 
 - type: characterItemGroup
   id: LoadoutCannedDrinks
-  maxItems: 1
   items:
     - type: loadout
       id: LoadoutItemDrinkNNNCan
@@ -196,3 +195,7 @@
       id: LoadoutItemPlushieCatTuxedo
     - type: loadout
       id: LoadoutItemPlushieCatWhite
+    - type: loadout
+      id: LoadoutItemToyRenault
+    - type: loadout
+      id: LoadoutItemToySiobhan
