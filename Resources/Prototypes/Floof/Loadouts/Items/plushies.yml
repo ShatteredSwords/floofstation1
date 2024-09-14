@@ -1,0 +1,529 @@
+- type: loadout
+  id: LoadoutItemPlushieBee
+  category: Items
+  cost: 1
+  items:
+    - PlushieBee
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieHampter
+  category: Items
+  cost: 1
+  items:
+    - PlushieHampter
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieNuke
+  category: Items
+  cost: 1
+  items:
+    - PlushieNuke
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieRouny
+  category: Items
+  cost: 1
+  items:
+    - PlushieRouny
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieArachind
+  category: Items
+  cost: 1
+  items:
+    - PlushieArachind
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieLizard
+  category: Items
+  cost: 1
+  items:
+    - PlushieLizard
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieSpaceLizard
+  category: Items
+  cost: 1
+  items:
+    - PlushieSpaceLizard
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieDiona
+  category: Items
+  cost: 1
+  items:
+    - PlushieDiona
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieSharkBlue
+  category: Items
+  cost: 1
+  items:
+    - PlushieSharkBlue
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieSharkPink
+  category: Items
+  cost: 1
+  items:
+    - PlushieSharkPink
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieSharkGrey
+  category: Items
+  cost: 1
+  items:
+    - PlushieSharkGrey
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieRatvar
+  category: Items
+  cost: 1
+  items:
+    - PlushieRatvar
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieNar
+  category: Items
+  cost: 1
+  items:
+    - PlushieNar
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCarp
+  category: Items
+  cost: 1
+  items:
+    - PlushieCarp
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieMagicarp
+  category: Items
+  cost: 1
+  items:
+    - PlushieMagicarp
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieHolocarp
+  category: Items
+  cost: 1
+  items:
+    - PlushieHolocarp
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieSlime
+  category: Items
+  cost: 1
+  items:
+    - PlushieSlime
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieSnake
+  category: Items
+  cost: 1
+  items:
+    - PlushieSnake
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemToyMouse
+  category: Items
+  cost: 1
+  items:
+    - ToyMouse
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemToyRubberDuck
+  category: Items
+  cost: 1
+  items:
+    - ToyRubberDuck
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieVox
+  category: Items
+  cost: 1
+  items:
+    - PlushieVox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieAtmosian
+  category: Items
+  cost: 1
+  items:
+    - PlushieAtmosian
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieXeno
+  category: Items
+  cost: 1
+  items:
+    - PlushieXeno
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushiePenguin
+  category: Items
+  cost: 1
+  items:
+    - PlushiePenguin
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieHuman
+  category: Items
+  cost: 1
+  items:
+    - PlushieHuman
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieArachne
+  category: Items
+  cost: 1
+  items:
+    - PlushieArachne
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieMoth
+  category: Items
+  cost: 1
+  items:
+    - PlushieMoth
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieGnome
+  category: Items
+  cost: 1
+  items:
+    - PlushieGnome
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieLoveable
+  category: Items
+  cost: 1
+  items:
+    - PlushieLoveable
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieDeer
+  category: Items
+  cost: 1
+  items:
+    - PlushieDeer
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieIpc
+  category: Items
+  cost: 1
+  items:
+    - PlushieIpc
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieGrey
+  category: Items
+  cost: 1
+  items:
+    - PlushieGrey
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieAbductor
+  category: Items
+  cost: 1
+  items:
+    - PlushieAbductor
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieAbductorAgent
+  category: Items
+  cost: 1
+  items:
+    - PlushieAbductorAgent
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieRedFox
+  category: Items
+  cost: 1
+  items:
+    - PlushieRedFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushiePurpleFox
+  category: Items
+  cost: 1
+  items:
+    - PlushiePurpleFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushiePinkFox
+  category: Items
+  cost: 1
+  items:
+    - PlushiePinkFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieOrangeFox
+  category: Items
+  cost: 1
+  items:
+    - PlushieOrangeFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieMarbleFox
+  category: Items
+  cost: 1
+  items:
+    - PlushieMarbleFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCrimsonFox
+  category: Items
+  cost: 1
+  items:
+    - PlushieCrimsonFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCoffeeFox
+  category: Items
+  cost: 1
+  items:
+    - PlushieCoffeeFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieBlueFox
+  category: Items
+  cost: 1
+  items:
+    - PlushieBlueFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieBlackFox
+  category: Items
+  cost: 1
+  items:
+    - PlushieBlackFox
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieVulp
+  category: Items
+  cost: 1
+  items:
+    - PlushieVulp
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCorgi
+  category: Items
+  cost: 1
+  items:
+    - PlushieCorgi
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieGirlyCorgi
+  category: Items
+  cost: 1
+  items:
+    - PlushieGirlyCorgi
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCatBlack
+  category: Items
+  cost: 1
+  items:
+    - PlushieCatBlack
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCatGrey
+  category: Items
+  cost: 1
+  items:
+    - PlushieCatGrey
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCatOrange
+  category: Items
+  cost: 1
+  items:
+    - PlushieCatOrange
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCatSiames
+  category: Items
+  cost: 1
+  items:
+    - PlushieCatSiames
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCatTabby
+  category: Items
+  cost: 1
+  items:
+    - PlushieCatTabby
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCatTuxedo
+  category: Items
+  cost: 1
+  items:
+    - PlushieCatTuxedo
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies
+
+- type: loadout
+  id: LoadoutItemPlushieCatWhite
+  category: Items
+  cost: 1
+  items:
+    - PlushieCatWhite
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutPlushies

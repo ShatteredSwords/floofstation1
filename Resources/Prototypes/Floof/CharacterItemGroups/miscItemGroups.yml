@@ -85,3 +85,114 @@
       id: LoadoutItemDrinkBeerCan
     - type: loadout
       id: LoadoutItemDrinkWineCan
+
+- type: characterItemGroup
+  id: LoadoutPlushies
+  maxItems: 1
+  items:
+    - type: loadout
+      id: LoadoutItemPlushieBee
+    - type: loadout
+      id: LoadoutItemPlushieHampter
+    - type: loadout
+      id: LoadoutItemPlushieNuke
+    - type: loadout
+      id: LoadoutItemPlushieRouny
+    - type: loadout
+      id: LoadoutItemPlushieArachind
+    - type: loadout
+      id: LoadoutItemPlushieLizard
+    - type: loadout
+      id: LoadoutItemPlushieSpaceLizard
+    - type: loadout
+      id: LoadoutItemPlushieDiona
+    - type: loadout
+      id: LoadoutItemPlushieSharkBlue
+    - type: loadout
+      id: LoadoutItemPlushieSharkPink
+    - type: loadout
+      id: LoadoutItemPlushieSharkGrey
+    - type: loadout
+      id: LoadoutItemPlushieRatvar
+    - type: loadout
+      id: LoadoutItemPlushieNar
+    - type: loadout
+      id: LoadoutItemPlushieCarp
+    - type: loadout
+      id: LoadoutItemPlushieMagicarp
+    - type: loadout
+      id: LoadoutItemPlushieHolocarp
+    - type: loadout
+      id: LoadoutItemPlushieSlime
+    - type: loadout
+      id: LoadoutItemPlushieSnake
+    - type: loadout
+      id: LoadoutItemToyMouse
+    - type: loadout
+      id: LoadoutItemToyRubberDuck
+    - type: loadout
+      id: LoadoutItemPlushieVox
+    - type: loadout
+      id: LoadoutItemPlushieAtmosian
+    - type: loadout
+      id: LoadoutItemPlushieXeno
+    - type: loadout
+      id: LoadoutItemPlushiePenguin
+    - type: loadout
+      id: LoadoutItemPlushieHuman
+    - type: loadout
+      id: LoadoutItemPlushieArachne
+    - type: loadout
+      id: LoadoutItemPlushieMoth
+    - type: loadout
+      id: LoadoutItemPlushieGnome
+    - type: loadout
+      id: LoadoutItemPlushieLoveable
+    - type: loadout
+      id: LoadoutItemPlushieDeer
+    - type: loadout
+      id: LoadoutItemPlushieIpc
+    - type: loadout
+      id: LoadoutItemPlushieGrey
+    - type: loadout
+      id: LoadoutItemPlushieAbductor
+    - type: loadout
+      id: LoadoutItemPlushieAbductorAgent
+    - type: loadout
+      id: LoadoutItemPlushieRedFox
+    - type: loadout
+      id: LoadoutItemPlushiePurpleFox
+    - type: loadout
+      id: LoadoutItemPlushiePinkFox
+    - type: loadout
+      id: LoadoutItemPlushieOrangeFox
+    - type: loadout
+      id: LoadoutItemPlushieMarbleFox
+    - type: loadout
+      id: LoadoutItemPlushieCrimsonFox
+    - type: loadout
+      id: LoadoutItemPlushieCoffeeFox
+    - type: loadout
+      id: LoadoutItemPlushieBlueFox
+    - type: loadout
+      id: LoadoutItemPlushieBlackFox
+    - type: loadout
+      id: LoadoutItemPlushieVulp
+    - type: loadout
+      id: LoadoutItemPlushieCorgi
+    - type: loadout
+      id: LoadoutItemPlushieGirlyCorgi
+    - type: loadout
+      id: LoadoutItemPlushieCatBlack
+    - type: loadout
+      id: LoadoutItemPlushieCatGrey
+    - type: loadout
+      id: LoadoutItemPlushieCatOrange
+    - type: loadout
+      id: LoadoutItemPlushieCatSiames
+    - type: loadout
+      id: LoadoutItemPlushieCatTabby
+    - type: loadout
+      id: LoadoutItemPlushieCatTuxedo
+    - type: loadout
+      id: LoadoutItemPlushieCatWhite
