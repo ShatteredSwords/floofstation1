@@ -1,0 +1,42 @@
+- type: characterItemGroup
+  id: LoadoutSexToys
+  maxItems: 2
+  items:
+    - type: loadout
+      id: LoadoutItemAvianDildo
+    - type: loadout
+      id: LoadoutItemCanineDildo
+    - type: loadout
+      id: LoadoutItemCanineDildoRed
+    - type: loadout
+      id: LoadoutItemHorseDildo
+    - type: loadout
+      id: LoadoutItemDragonDildo
+    - type: loadout
+      id: LoadoutItemNormalDildo
+    - type: loadout
+      id: LoadoutItemTentacleDildo
+    - type: loadout
+      id: LoadoutItemDoubleDildo
+    - type: loadout
+      id: LoadoutItemLewdFleshlightGreen
+    - type: loadout
+      id: LoadoutItemLewdFleshlightTeal
+    - type: loadout
+      id: LoadoutItemLewdFleshlightPink
+    - type: loadout
+      id: LoadoutItemLewdFleshlightRed
+    - type: loadout
+      id: LoadoutItemLewdFleshlightYellow
+    - type: loadout
+      id: LoadoutItemLewdWand
+    - type: loadout
+      id: LoadoutItemLewdVibeGreen
+    - type: loadout
+      id: LoadoutItemLewdVibeTeal
+    - type: loadout
+      id: LoadoutItemLewdVibePink
+    - type: loadout
+      id: LoadoutItemLewdVibeRed
+    - type: loadout
+      id: LoadoutItemLewdVibeYellow

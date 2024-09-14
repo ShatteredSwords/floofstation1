@@ -1,0 +1,189 @@
+- type: loadout
+  id: LoadoutItemAvianDildo
+  category: Items
+  cost: 1
+  items:
+    - AvianDildo
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemCanineDildo
+  category: Items
+  cost: 1
+  items:
+    - CanineDildo
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemCanineDildoRed
+  category: Items
+  cost: 1
+  items:
+    - CanineDildoRed
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemHorseDildo
+  category: Items
+  cost: 1
+  items:
+    - HorseDildo
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemDragonDildo
+  category: Items
+  cost: 1
+  items:
+    - DragonDildo
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemNormalDildo
+  category: Items
+  cost: 1
+  items:
+    - NormalDildo
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemTentacleDildo
+  category: Items
+  cost: 1
+  items:
+    - TentacleDildo
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemDoubleDildo
+  category: Items
+  cost: 1
+  items:
+    - DoubleDildo
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdFleshlightGreen
+  category: Items
+  cost: 1
+  items:
+    - LewdFleshlightGreen
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdFleshlightTeal
+  category: Items
+  cost: 1
+  items:
+    - LewdFleshlightTeal
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdFleshlightPink
+  category: Items
+  cost: 1
+  items:
+    - LewdFleshlightPink
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdFleshlightRed
+  category: Items
+  cost: 1
+  items:
+    - LewdFleshlightRed
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdFleshlightYellow
+  category: Items
+  cost: 1
+  items:
+    - LewdFleshlightYellow
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdWand
+  category: Items
+  cost: 1
+  items:
+    - LewdWand
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdVibeGreen
+  category: Items
+  cost: 1
+  items:
+    - LewdVibeGreen
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdVibeTeal
+  category: Items
+  cost: 1
+  items:
+    - LewdVibeTeal
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdVibePink
+  category: Items
+  cost: 1
+  items:
+    - LewdVibePink
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdVibeRed
+  category: Items
+  cost: 1
+  items:
+    - LewdVibeRed
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
+
+- type: loadout
+  id: LoadoutItemLewdVibeYellow
+  category: Items
+  cost: 1
+  items:
+    - LewdVibeYellow
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: LoadoutSexToys
