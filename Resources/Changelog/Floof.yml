@@ -1003,3 +1003,56 @@ Entries:
   id: 135
   time: '2024-09-23T02:26:14.0000000+00:00'
   url: https://github.com/Fansana/floofstation1/pull/199
+- author: Mnemotechnician
+  changes:
+    - type: Add
+      message: Upstream merge. See the Einstein-Engines tab for more details.
+  id: 136
+  time: '2024-09-23T17:43:54.0000000+00:00'
+  url: https://github.com/Fansana/floofstation1/pull/190
+- author: Mnemotechnician
+  changes:
+    - type: Fix
+      message: Fixed several major issues with leashes. Again.
+  id: 137
+  time: '2024-09-23T17:49:01.0000000+00:00'
+  url: https://github.com/Fansana/floofstation1/pull/203
+- author: Memeji
+  changes:
+    - type: Add
+      message: '"Omen" Artifacts'
+    - type: Add
+      message: Lewd reagents to the reagent spawning effects.
+    - type: Tweak
+      message: Reduced depth at which extremely dangerous effects can occur.
+  id: 138
+  time: '2024-09-23T21:04:33.0000000+00:00'
+  url: https://github.com/Fansana/floofstation1/pull/204
+- author: ShatteredSwords
+  changes:
+    - type: Tweak
+      message: Felinids can now be multiple colors instead of human colors.
+  id: 139
+  time: '2024-09-24T06:41:43.0000000+00:00'
+  url: https://github.com/Fansana/floofstation1/pull/202
+- author: Memeji
+  changes:
+    - type: Tweak
+      message: Depth changed from 8 to 9.
+  id: 140
+  time: '2024-09-25T04:21:11.0000000+00:00'
+  url: https://github.com/Fansana/floofstation1/pull/206
+- author: Memeji
+  changes:
+    - type: Remove
+      message: Omen Item Artifacts.
+  id: 141
+  time: '2024-09-25T22:17:16.0000000+00:00'
+  url: https://github.com/Fansana/floofstation1/pull/207
+- author: Mnemotechnician
+  changes:
+    - type: Tweak
+      message: The NEIL announcer can once again appear in a shift.
+  id: 142
+  time: '2024-09-25T22:19:49.0000000+00:00'
+  url: https://github.com/Fansana/floofstation1/pull/209
