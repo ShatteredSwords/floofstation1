@@ -16,6 +16,9 @@
       inverted: true
       traits:
       - HollowFangs
+    - !type:CharacterTraitRequirement
+      traits:
+      - BloodDeficiency
   components: # TODO: Extra holy damage, holy water acts like how water is to slimes (?), Characters have visible fangs on examine, discuss giving this blood deficiency as well
     - type: Vampirism
       succDelay: 3
